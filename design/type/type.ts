@@ -6,9 +6,9 @@ export interface IUser {
     age: number;
     password: string;
     picUrl: string;
-    role:number
-    salary:number
-    description:string
+    role: number;
+    salary: number;
+    description: string;
 }
 export interface IRegister {
     firstName: string;
@@ -17,9 +17,9 @@ export interface IRegister {
     age: number;
     password: string;
     confirmpassword: string;
-    role:number
-    salary:number
-    description:string
+    role: number;
+    salary: number;
+    description: string;
 }
 export interface ILogin {
     username: string;
@@ -38,4 +38,12 @@ export interface ICustomer {
 export interface IFreelancer {
     userId: number;
     salary: number;
+}
+
+export interface IWork {
+    name: string;
+    price: number;
+    deadline: Date;
+    description: string;
+    skills: number[];
 }

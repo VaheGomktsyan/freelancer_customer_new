@@ -40,7 +40,6 @@ export class CustomerController {
   @ApiBearerAuth('JWT-auth')
   @Patch('')
   async update(
-    @Param('id') id: string,
     @Body() updateCustomerDto: UpdateCustomerDto,
     @Req() req,
     @Res() res: Response,
