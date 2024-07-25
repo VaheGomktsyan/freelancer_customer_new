@@ -40,10 +40,36 @@ export interface IFreelancer {
     salary: number;
 }
 
+export interface ISkillFreelancer {
+    skillId: number;
+    freelancerId: number;
+}
+
 export interface IWork {
     name: string;
     price: number;
     deadline: Date;
     description: string;
     skills: number[];
+}
+
+export interface ISkill {
+    name: string;
+}
+
+export interface ISkillWork {
+    skillId: number
+    workId: number
+}
+
+export interface IApply {
+    freelancerId: number;
+    workId: number;
+}
+
+export interface IFeedback {
+    freelancerId: number;
+    workId: number;
+    rate: number
+    text: string
 }

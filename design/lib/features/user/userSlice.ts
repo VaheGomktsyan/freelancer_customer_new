@@ -62,21 +62,21 @@ export const userApiSlice = createApi({
         }),
         getUsers: build.query<any, IUser>({
             query: () => ({
-                url: `/user`,
+                url: `user`,
                 method: "GET",
             }),
             providesTags: ["User"],
         }),
         getUserById: build.query<any, IUser>({
             query: (id) => ({
-                url: `/user/${id}`,
+                url: `user/${id}`,
                 method: "GET",
             }),
             providesTags: ["User"],
         }),
         deleteUserById: build.mutation<any, IUser>({
             query: (id) => ({
-                url: `/user/${id}`,
+                url: `user/${id}`,
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -86,53 +86,58 @@ export const userApiSlice = createApi({
         }),
         updateUser: build.mutation<void, Pick<IUser, any> & Partial<IUser>>({
             query: ({ id, ...patch }) => ({
-                url: `/user/updateData`,
+                url: `user/updateData`,
                 method: "PATCH",
                 body: patch,
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             }),
+            invalidatesTags: ["User"],
         }),
         resetPassword: build.mutation<void, Pick<IUser, any> & Partial<IUser>>({
             query: ({ email, ...patch }) => ({
-                url: `/user/resetPassword/${email}`,
+                url: `user/resetPassword/${email}`,
                 method: "PATCH",
                 body: patch,
             }),
+            invalidatesTags: ["User"],
         }),
         updatePicUrl: build.mutation<void, Pick<IUser, any> & Partial<IUser>>({
             query: ({ ...patch }) => ({
-                url: `/user/updatePicUrl`,
+                url: `user/updatePicUrl`,
                 method: "PATCH",
                 body: patch,
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             }),
+            invalidatesTags: ["User"],
         }),
         updatePassword: build.mutation<void, Pick<IUser, any> & Partial<IUser>>(
             {
                 query: ({ ...patch }) => ({
-                    url: `/user/updatePassword`,
+                    url: `user/updatePassword`,
                     method: "PATCH",
                     body: patch,
                     headers: {
                         Authorization: `Bearer ${localStorage.token}`,
                     },
                 }),
+                invalidatesTags: ["User"],
             }
         ),
         forgotPassword: build.mutation<void, Pick<IUser, any> & Partial<IUser>>(
             {
                 query: ({ email, ...patch }) => ({
-                    url: `/user/forgetPassword/${email}`,
+                    url: `user/forgetPassword/${email}`,
                     method: "PATCH",
                     body: patch,
                     headers: {
                         Authorization: `Bearer ${localStorage.token}`,
                     },
                 }),
+                invalidatesTags: ["User"],
             }
         ),
     }),

@@ -40,6 +40,7 @@ export const workSlice = createApi({
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             }),
+            invalidatesTags: ["Work"],
         }),
         deleteWork: build.mutation({
             query: (id) => ({
