@@ -6,7 +6,7 @@ export const Admin = ({user}:{user:IUser}) => {
     console.log('admin',user);
     return (
         <div>
-            <h3>admin</h3>
+            <h3>Admin</h3>
         </div>
     );
 };

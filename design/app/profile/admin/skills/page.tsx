@@ -1,13 +1,14 @@
+import { Skills } from "@/app/components/Profile/Admin/Skills";
 import type { Metadata } from "next";
-import { Login } from "./components/Login";
 
 export default function IndexPage() {
+    
     return (
         <div>
-            <Login />
+            <Skills />
         </div>
     );
 }
 export const metadata: Metadata = {
-    title: "Login",
+    title: "Skills",
 };

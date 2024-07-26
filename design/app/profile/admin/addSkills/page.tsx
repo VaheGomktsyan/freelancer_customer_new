@@ -1,13 +1,14 @@
+import { AddSkill } from "@/app/components/Profile/Admin/AddSkills";
 import type { Metadata } from "next";
-import { Login } from "./components/Login";
 
 export default function IndexPage() {
+    
     return (
         <div>
-            <Login />
+            <AddSkill />
         </div>
     );
 }
 export const metadata: Metadata = {
-    title: "Login",
+    title: "AddSkill",
 };

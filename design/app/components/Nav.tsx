@@ -19,39 +19,81 @@ export const Nav = () => {
 
     return (
         <nav className={styles.nav}>
-            <Link
-                className={`${styles.link} ${
-                    pathname === "/profile" ? styles.active : ""
-                }`}
-                href="/profile"
-            >
-                Profile
-            </Link>
+            {results && results.data ? (
+                <>
+                    <Link
+                        className={`${styles.link} ${
+                            pathname === "/profile" ? styles.active : ""
+                        }`}
+                        href="/profile"
+                    >
+                        Profile
+                    </Link>
 
-            {results && results.data && results.data.role == 0 ? (
-                <>
-                    {/* <>Customer</> */}
-                    {/* Create customer page ----------------- */}
+                    {results && results.data && results.data.role == 0 ? (
+                        <>
+                            <>Customer</>
+                            {/* Create customer page ----------------- */}
+                        </>
+                    ) : results && results.data && results.data.role == 1 ? (
+                        <>
+                            <>Freelancer</>
+                        </>
+                    ) : results && results.data && results.data.role == 2 ? (
+                        <>
+                                <Link
+                                    className={`${styles.link} ${
+                                        pathname === "/profile/admin/addSkills"
+                                            ? styles.active
+                                            : ""
+                                    }`}
+                                    href="/profile/admin/addSkills"
+                                >
+                                    AddSkills
+                                </Link>
+                                <Link
+                                    className={`${styles.link} ${
+                                        pathname === "/profile/admin/skills"
+                                            ? styles.active
+                                            : ""
+                                    }`}
+                                    href="/profile/admin/skills"
+                                >
+                                    skills
+                                </Link>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                    <button
+                        onClick={() => {
+                            delete localStorage.token;
+                            router.replace("/");
+                        }}
+                    >
+                        log Out
+                    </button>
                 </>
-            ) : results && results.data && results.data.role == 1 ? (
+            ) : (
                 <>
-                    <>Freelancer</>
+                    <Link
+                        className={`${styles.link} ${
+                            pathname === "/" ? styles.active : ""
+                        }`}
+                        href="/"
+                    >
+                        Login
+                    </Link>
+                    <Link
+                        className={`${styles.link} ${
+                            pathname === "/register" ? styles.active : ""
+                        }`}
+                        href="/register"
+                    >
+                        Register
+                    </Link>
                 </>
-            ) :  results && results.data && results.data.role == 2 ? (
-              <>
-                  <>Admin</>
-              </>
-          ) : (
-                <></>
             )}
-            <button
-                onClick={() => {
-                    delete localStorage.token;
-                    router.replace("/");
-                }}
-            >
-                log Out
-            </button>
         </nav>
     );
 };

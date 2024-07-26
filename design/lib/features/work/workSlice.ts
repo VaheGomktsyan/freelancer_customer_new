@@ -54,3 +54,11 @@ export const workSlice = createApi({
         }),
     }),
 });
+
+export const {
+    useGetWorkQuery,
+    useGetWorksQuery,
+    useDeleteWorkMutation,
+    useAddWorkMutation,
+    useUpdateWorkMutation,
+} = workSlice;

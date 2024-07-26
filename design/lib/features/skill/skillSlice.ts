@@ -1,10 +1,10 @@
 import { ISkill, ISkillWork } from "@/type/type";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const skillSlice = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/' }),
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/" }),
     reducerPath: "SkillApi",
-    tagTypes: ["Skill", 'Skill-Work'],
+    tagTypes: ["Skill", "Skill-Work"],
     endpoints: (build) => ({
         addSkill: build.mutation<any, ISkill>({
             query: (data: ISkill) => ({
@@ -73,5 +73,13 @@ export const skillSlice = createApi({
             }),
             invalidatesTags: ["Skill-Work"],
         }),
-    })
-})
+    }),
+});
+
+export const {
+    useGetSkillsQuery,
+    useGetSkillByIdQuery,
+    useAddSkillMutation,
+    useUpdateSkillMutation,
+    useDeleteSkillMutation,
+} = skillSlice;

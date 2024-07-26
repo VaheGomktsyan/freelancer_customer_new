@@ -34,6 +34,7 @@ export const Profile = () => {
                 <>
                     {results.data.role == 0 ? (
                         <Customer user={results.data} />
+                        
                     ) : results.data.role == 1 ? (
                         <Freelancer user={results.data} />
                     ) : results.data.role == 2 ? (

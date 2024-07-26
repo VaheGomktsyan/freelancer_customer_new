@@ -25,3 +25,8 @@ export const customerSlice = createApi({
         }),
     }),
 });
+
+export const {
+useGetCustomersQuery,
+useUpdateCustomerMutation
+}=customerSlice

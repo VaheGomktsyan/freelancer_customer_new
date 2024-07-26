@@ -60,7 +60,7 @@ export const userApiSlice = createApi({
             }),
             invalidatesTags: ["User"],
         }),
-        getUsers: build.query<any, IUser>({
+        getUsers: build.query({
             query: () => ({
                 url: `user`,
                 method: "GET",
@@ -150,4 +150,12 @@ export const {
     useAdminPageMutation,
     useProfilePageMutation,
     useUserPageMutation,
+    useGetUserByIdQuery,
+    useGetUsersQuery,
+    useDeleteUserByIdMutation,
+    useForgotPasswordMutation,
+    useResetPasswordMutation,
+    useUpdatePasswordMutation,
+    useUpdatePicUrlMutation,
+    useUpdateUserMutation,
 } = userApiSlice;

@@ -1,13 +1,14 @@
+import { Work } from "@/app/components/Profile/Admin/Works";
 import type { Metadata } from "next";
-import { Login } from "./components/Login";
 
 export default function IndexPage() {
+    
     return (
         <div>
-            <Login />
+            <Work />
         </div>
     );
 }
 export const metadata: Metadata = {
-    title: "Login",
+    title: "Work",
 };

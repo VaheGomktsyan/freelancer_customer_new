@@ -1,5 +1,5 @@
 import { IApply, IFeedback } from "@/type/type";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const feedbackApplySlice = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/" }),
@@ -58,7 +58,10 @@ export const feedbackApplySlice = createApi({
             }),
             invalidatesTags: ["Feedback"],
         }),
-        updateFeedback: build.mutation<void, Pick<IFeedback, any> & Partial<IFeedback>>({
+        updateFeedback: build.mutation<
+            void,
+            Pick<IFeedback, any> & Partial<IFeedback>
+        >({
             query: ({ ...patch }) => ({
                 //   ^ ----------------------------------------- ??
                 url: `feedback`,
@@ -81,5 +84,15 @@ export const feedbackApplySlice = createApi({
             }),
             invalidatesTags: ["Feedback"],
         }),
-    })
-})
+    }),
+});
+
+export const {
+    useAddApplyMutation,
+    useGetApplysQuery,
+    useUpdateApplyMutation,
+    useDeleteApplyMutation,
+    useAddFeedbackMutation,
+    useDeleteFeedbackMutation,
+    useUpdateFeedbackMutation,
+} = feedbackApplySlice;
