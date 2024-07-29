@@ -41,30 +41,55 @@ export const Nav = () => {
                         </>
                     ) : results && results.data && results.data.role == 2 ? (
                         <>
-                                <Link
-                                    className={`${styles.link} ${
-                                        pathname === "/profile/admin/addSkills"
-                                            ? styles.active
-                                            : ""
-                                    }`}
-                                    href="/profile/admin/addSkills"
-                                >
-                                    AddSkills
-                                </Link>
-                                <Link
-                                    className={`${styles.link} ${
-                                        pathname === "/profile/admin/skills"
-                                            ? styles.active
-                                            : ""
-                                    }`}
-                                    href="/profile/admin/skills"
-                                >
-                                    skills
-                                </Link>
+                            <br />
+                            <Link
+                                className={`${styles.link} ${
+                                    pathname === "/profile/admin/addSkills"
+                                        ? styles.active
+                                        : ""
+                                }`}
+                                href="/profile/admin/addSkills"
+                            >
+                                AddSkills
+                            </Link>
+                            <br />
+                            <Link
+                                className={`${styles.link} ${
+                                    pathname === "/profile/admin/skills"
+                                        ? styles.active
+                                        : ""
+                                }`}
+                                href="/profile/admin/skills"
+                            >
+                                Skills
+                            </Link>
+                            <br />
+                            <Link
+                                className={`${styles.link} ${
+                                    pathname === "/profile/admin/users"
+                                        ? styles.active
+                                        : ""
+                                }`}
+                                href="/profile/admin/users"
+                            >
+                                Users
+                            </Link>
+                            <br />
+                            <Link
+                                className={`${styles.link} ${
+                                    pathname === "/profile/admin/works"
+                                        ? styles.active
+                                        : ""
+                                }`}
+                                href="/profile/admin/works"
+                            >
+                                Works
+                            </Link>
                         </>
                     ) : (
                         <></>
                     )}
+                    <br />
                     <button
                         onClick={() => {
                             delete localStorage.token;

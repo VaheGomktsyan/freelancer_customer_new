@@ -79,7 +79,13 @@ export class UserService {
   async findAll() {
     return await this.userRepository
       .createQueryBuilder('user')
-      .select(['user.firstName', 'user.lastName'])
+      .select([
+        'user.firstName',
+        'user.lastName',
+        'user.role',
+        'user.email',
+        'user.picUrl',
+      ])
       .getMany();
   }
 

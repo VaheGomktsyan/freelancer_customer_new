@@ -46,6 +46,14 @@ export interface ISkillFreelancer {
 }
 
 export interface IWork {
+    id: number;
+    name: string;
+    price: number;
+    deadline: Date;
+    description: string;
+    skills: number[];
+}
+export interface IAddWork {
     name: string;
     price: number;
     deadline: Date;
@@ -54,12 +62,16 @@ export interface IWork {
 }
 
 export interface ISkill {
+    id: number;
+    name: string;
+}
+export interface IAddSkill {
     name: string;
 }
 
 export interface ISkillWork {
-    skillId: number
-    workId: number
+    skillId: number;
+    workId: number;
 }
 
 export interface IApply {
@@ -70,6 +82,6 @@ export interface IApply {
 export interface IFeedback {
     freelancerId: number;
     workId: number;
-    rate: number
-    text: string
+    rate: number;
+    text: string;
 }

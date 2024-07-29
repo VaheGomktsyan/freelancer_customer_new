@@ -1,6 +1,6 @@
 "use client";
 import { useAddSkillMutation } from "@/lib/features/skill/skillSlice";
-import { ISkill } from "@/type/type";
+import { IAddSkill, ISkill } from "@/type/type";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
@@ -17,7 +17,7 @@ export const AddSkill = () => {
                 initialValues={{
                     name: "",
                 }}
-                onSubmit={(values: ISkill) => {
+                onSubmit={(values: IAddSkill) => {
                     console.log(values);
                     addSkill(values)
                         .unwrap()

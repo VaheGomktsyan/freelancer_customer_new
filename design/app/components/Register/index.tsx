@@ -3,7 +3,6 @@ import { useRegisterMutation } from "@/lib/features/user/userSlice";
 import { IRegister, IUser } from "@/type/type";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
-import { Navlogin } from "../NavLogin";
 
 export const Register = () => {
     const [addUser] = useRegisterMutation();

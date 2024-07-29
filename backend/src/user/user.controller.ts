@@ -26,6 +26,9 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { multerOptions } from 'src/upload/config';
+import { HasRoles } from 'src/auth/roles.decorator';
+import { Role } from './role/user.enum';
+import { RolesGuard } from 'src/auth/roles.guard';
 
 @ApiTags('User')
 @Controller('user')
@@ -33,6 +36,9 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @HttpCode(HttpStatus.OK)
+  // @HasRoles(Role.ADMIN)
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @ApiBearerAuth('JWT-auth')
   @Get()
   async findAll(@Res() res: Response) {
     try {

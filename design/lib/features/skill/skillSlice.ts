@@ -1,4 +1,4 @@
-import { ISkill, ISkillWork } from "@/type/type";
+import { IAddSkill, ISkill, ISkillWork } from "@/type/type";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const skillSlice = createApi({
@@ -6,8 +6,8 @@ export const skillSlice = createApi({
     reducerPath: "SkillApi",
     tagTypes: ["Skill", "Skill-Work"],
     endpoints: (build) => ({
-        addSkill: build.mutation<any, ISkill>({
-            query: (data: ISkill) => ({
+        addSkill: build.mutation<any, IAddSkill>({
+            query: (data: IAddSkill) => ({
                 url: "skill",
                 method: "POST",
                 body: data,
@@ -17,22 +17,22 @@ export const skillSlice = createApi({
             }),
             invalidatesTags: ["Skill"],
         }),
-        getSkills: build.query<ISkill, number>({
+        getSkills: build.query({
             query: () => ({
                 url: `skill`,
                 method: "GET",
             }),
             providesTags: ["Skill"],
         }),
-        getSkillById: build.query<ISkill, number>({
-            query: (id) => ({
+        getSkillById: build.query<any, number>({
+            query: (id:number) => ({
                 url: `skill/${id}`,
                 method: "GET",
             }),
             providesTags: ["Skill"],
         }),
         updateSkill: build.mutation<void, Pick<ISkill, any> & Partial<ISkill>>({
-            query: ({ id, ...patch }) => ({
+            query: ({ id, ...patch }:{id:number}) => ({
                 url: `skill/${id}`,
                 method: "PATCH",
                 body: patch,
@@ -42,8 +42,8 @@ export const skillSlice = createApi({
             }),
             invalidatesTags: ["Skill"],
         }),
-        deleteSkill: build.mutation({
-            query: (id) => ({
+        deleteSkill: build.mutation<any, number>({
+            query: (id:number) => ({
                 url: `skill/${id}`,
                 method: "DELETE",
                 headers: {
@@ -64,8 +64,8 @@ export const skillSlice = createApi({
             invalidatesTags: ["Skill-Work"],
         }),
         deleteSkillWork: build.mutation({
-            query: ({ skillId, workId }) => ({
-                url: `skill-work/${skillId || workId}`,
+            query: ({ skillId, workId }:{ skillId:number, workId:number}) => ({
+                url: `skill-work/${skillId}/${  workId}`,
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,

@@ -1,4 +1,4 @@
-import { IWork } from "@/type/type";
+import { IAddWork, IWork } from "@/type/type";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const workSlice = createApi({
@@ -6,8 +6,8 @@ export const workSlice = createApi({
     reducerPath: "WorkApi",
     tagTypes: ["Work"],
     endpoints: (build) => ({
-        addWork: build.mutation<any, IWork>({
-            query: (data: IWork) => ({
+        addWork: build.mutation<any, IAddWork>({
+            query: (data: IAddWork) => ({
                 url: ``,
                 method: "POST",
                 body: data,
