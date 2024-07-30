@@ -38,6 +38,7 @@ export interface ICustomer {
 export interface IFreelancer {
     userId: number;
     salary: number;
+    user: IUser;
 }
 
 export interface ISkillFreelancer {

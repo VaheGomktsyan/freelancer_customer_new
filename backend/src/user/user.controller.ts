@@ -63,10 +63,27 @@ export class UserController {
   @HttpCode(HttpStatus.OK)
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('JWT-auth')
-  @Delete(':id')
+  @Delete('')
   async remove(@Request() req, @Res() res: Response) {
     try {
       const data = await this.userService.remove(req.user.id);
+      return res.status(HttpStatus.OK).json(data);
+    } catch (e) {
+      return res.status(HttpStatus.OK).json({ message: e.message });
+    }
+  }
+  @HttpCode(HttpStatus.OK)
+  @HasRoles(Role.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiBearerAuth('JWT-auth')
+  @Delete(':id')
+  async removeDel(
+    @Param('id') id: number,
+    @Request() req,
+    @Res() res: Response,
+  ) {
+    try {
+      const data = await this.userService.remove(id);
       return res.status(HttpStatus.OK).json(data);
     } catch (e) {
       return res.status(HttpStatus.OK).json({ message: e.message });
@@ -117,9 +134,8 @@ export class UserController {
       },
     },
   })
-
   @ApiConsumes('multipart/form-data')
-  @UseInterceptors(FileInterceptor("file",multerOptions))
+  @UseInterceptors(FileInterceptor('file', multerOptions))
   @HttpCode(HttpStatus.OK)
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('JWT-auth')
@@ -128,7 +144,7 @@ export class UserController {
     @Body() updateUserDto: updatePicUrl,
     @Request() req,
     @Res() res: Response,
-    @UploadedFile() file
+    @UploadedFile() file,
   ) {
     try {
       const data = await this.userService.uploadPicUrl(file, req.user.id);

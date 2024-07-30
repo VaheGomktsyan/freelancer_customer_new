@@ -17,14 +17,17 @@ export const workSlice = createApi({
             }),
             invalidatesTags: ["Work"],
         }),
-        getWork: build.query<IWork, number>({
-            query: (id) => ({
-                url: `/${id}`,
+        getWorkByCustomer: build.query({
+            query: () => ({
+                url: `/customer/find`,
                 method: "GET",
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             }),
             providesTags: ["Work"],
         }),
-        getWorks: build.query<IWork, number>({
+        getWorks: build.query({
             query: () => ({
                 url: ``,
                 method: "GET",
@@ -56,7 +59,7 @@ export const workSlice = createApi({
 });
 
 export const {
-    useGetWorkQuery,
+    useGetWorkByCustomerQuery,
     useGetWorksQuery,
     useDeleteWorkMutation,
     useAddWorkMutation,

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-
 import styles from "../styles/layout.module.css";
 import { useProfilePageMutation } from "@/lib/features/user/userSlice";
 import { useEffect } from "react";
@@ -11,7 +10,7 @@ export const Nav = () => {
     const pathname = usePathname();
     const [userProfile, results] = useProfilePageMutation();
     const router = useRouter();
-    console.log("=>", results.data);
+    // console.log("=>", results.data);
 
     useEffect(() => {
         userProfile("").unwrap().then().catch(console.warn);
@@ -32,8 +31,42 @@ export const Nav = () => {
 
                     {results && results.data && results.data.role == 0 ? (
                         <>
+                            <br />
                             <>Customer</>
-                            {/* Create customer page ----------------- */}
+                            <br />
+                            <Link
+                                className={`${styles.link} ${
+                                    pathname === "/profile/customer/addWork"
+                                        ? styles.active
+                                        : ""
+                                }`}
+                                href="/profile/customer/addWork"
+                            >
+                                AddWork
+                            </Link>
+                            <br />
+                            <Link
+                                className={`${styles.link} ${
+                                    pathname === "/profile/customer/freelancers"
+                                        ? styles.active
+                                        : ""
+                                }`}
+                                href="/profile/customer/freelancers"
+                            >
+                                Freelancers
+                            </Link>
+                            <br />
+
+                            <Link
+                                className={`${styles.link} ${
+                                    pathname === "/profile/customer/myWork"
+                                        ? styles.active
+                                        : ""
+                                }`}
+                                href="/profile/customer/myWork"
+                            >
+                                MyWork
+                            </Link>
                         </>
                     ) : results && results.data && results.data.role == 1 ? (
                         <>
@@ -90,6 +123,14 @@ export const Nav = () => {
                         <></>
                     )}
                     <br />
+                    <Link
+                        className={`${styles.link} ${
+                            pathname === "/profile/settings" ? styles.active : ""
+                        }`}
+                        href="/profile/settings"
+                    >
+                        Settings
+                    </Link>
                     <button
                         onClick={() => {
                             delete localStorage.token;

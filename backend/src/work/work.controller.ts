@@ -69,6 +69,25 @@ export class WorkController {
   @HasRoles(Role.CUSTOMER)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiBearerAuth('JWT-auth')
+  @Get("/customer/find")
+  async getByCus(
+    @Req() req,
+    @Res() res: Response,
+  ) {
+    try {
+      const data = await this.workService.customerFind(req.user.id);
+      return res.status(HttpStatus.OK).json(data);
+    } catch (e) {
+      return res.status(HttpStatus.OK).json({ message: e.message });
+    }
+  }
+
+
+
+  @HttpCode(HttpStatus.OK)
+  @HasRoles(Role.CUSTOMER)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiBearerAuth('JWT-auth')
   @Patch(':id')
   async update(
     @Param('id') id: string,

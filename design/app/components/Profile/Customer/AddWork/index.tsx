@@ -1,7 +1,9 @@
+"use client";
 import { useAddWorkMutation } from "@/lib/features/work/workSlice";
+import { addWorkSchema } from "@/schema";
 import { IAddWork, IWork } from "@/type/type";
 import { ErrorMessage, Field, Formik } from "formik";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export const AddWork = () => {
     const router = useRouter();
@@ -15,10 +17,11 @@ export const AddWork = () => {
                 initialValues={{
                     name: "",
                     price: 0,
-                    deadline: new Date,
+                    deadline: new Date(),
                     description: "",
                     skills: [],
                 }}
+                validationSchema={addWorkSchema}
                 onSubmit={(values: IAddWork) => {
                     console.log(values);
                     addWork(values)

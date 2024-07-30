@@ -9,6 +9,7 @@ import { Customer } from 'src/customer/entities/customer.entity';
 import { Role } from 'src/user/role/user.enum';
 import { Skill } from 'src/skill/entities/skill.entity';
 import { SkillWork } from 'src/skill-work/entities/skill-work.entity';
+import { Freelancer } from 'src/freelancer/entities/freelancer.entity';
 
 @Injectable()
 export class WorkService {
@@ -20,6 +21,8 @@ export class WorkService {
     private skillWorkRepository: Repository<SkillWork>,
     @InjectRepository(Customer)
     private customerRepository: Repository<Customer>,
+    @InjectRepository(Freelancer)
+    private freelancerRepository: Repository<Freelancer>,
   ) {}
 
   async create(createWorkDto: CreateWorkDto, userId: number) {
@@ -62,6 +65,48 @@ export class WorkService {
       },
     });
     return work || { message: 'work not found' };
+  }
+
+  async customerFind(id: number) {
+    const customer = await this.customerRepository.findOne({
+      where: {
+        userId: id,
+      },
+    });
+    if (customer) {
+      const work = await this.workRepository.find({
+        where: {
+          customer,
+        },
+        relations: {
+          workFeedbacks: true,
+          customer: true,
+        },
+      });
+      return work || { message: 'work not found' };
+    } else {
+      return { message: 'customer not found' };
+    }
+  }
+
+  async freelancerFind(id: number) {
+    const freelancer = await this.freelancerRepository.findOne({
+      where: {
+        userId: id,
+      },
+    });
+    if (freelancer) {
+      const work = await this.workRepository.find({
+        where: {
+        },
+        relations: {
+          workFeedbacks: true,
+        },
+      });
+      return work || { message: 'work not found' };
+    } else {
+      return { message: 'freelancer not found' };
+    }
   }
 
   async update(id: number, updateWorkDto: UpdateWorkDto) {

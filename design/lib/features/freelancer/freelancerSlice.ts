@@ -7,7 +7,7 @@ export const freelancerSlice = createApi({
     reducerPath: "FreelancerApi",
     tagTypes: ["Freelancer", "Skill-Freelancer"],
     endpoints: (build) => ({
-        getFreelancers: build.query<IFreelancer, number>({
+        getFreelancers: build.query({
             query: () => ({
                 url: `freelancer`,
                 method: "GET",

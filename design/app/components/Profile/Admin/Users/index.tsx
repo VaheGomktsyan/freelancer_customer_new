@@ -15,7 +15,9 @@ export const Users = () => {
 
     const handleDelete = async (id: number) => {
         try {
-            await deleteUserById(id).unwrap();
+            console.log(id);
+            
+            await deleteUserById(id).unwrap().then(console.log);
         } catch (err) {
             console.error("Failed to delete the post:", err);
         }

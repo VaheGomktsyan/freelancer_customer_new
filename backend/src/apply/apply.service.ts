@@ -56,6 +56,7 @@ export class ApplyService {
       throw new NotFoundException('freelancer not found');
     }
   }
+  
   async findOneByWorkId(id: number) {
     const work = await this.workRepository.findOne({
       where: {

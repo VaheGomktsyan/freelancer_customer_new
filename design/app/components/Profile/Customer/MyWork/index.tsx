@@ -1,26 +1,35 @@
 "use client";
 import {
     useDeleteWorkMutation,
-    useGetWorksQuery,
+    useGetWorkByCustomerQuery,
 } from "@/lib/features/work/workSlice";
 import { IWork } from "@/type/type";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
 
-export const Work = () => {
+export const MyWorkCust = () => {
     const router = useRouter();
-    const { data } = useGetWorksQuery("");
-    console.log("data");
+    const { data } = useGetWorkByCustomerQuery(0);
+    // console.log(data);
 
+    const [deleteWork] = useDeleteWorkMutation();
+
+    const handleDelete = async (id: number) => {
+        try {
+            await deleteWork(id).unwrap();
+        } catch (err) {
+            console.error("Failed to delete the work:", err);
+        }
+    };
     return (
         <div>
-            <h3>Works</h3>
+            <h3>MyWork</h3>
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Price</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +38,11 @@ export const Work = () => {
                             <td>{elm.name}</td>
                             <td>{elm.description}</td>
                             <td>{elm.price}</td>
+                            <td>
+                                <button onClick={() => handleDelete(elm.id)}>
+                                    Delete
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,5 +1,6 @@
 "use client";
 import { useRegisterMutation } from "@/lib/features/user/userSlice";
+import { registerSchema } from "@/schema";
 import { IRegister, IUser } from "@/type/type";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
@@ -22,7 +23,7 @@ export const Register = () => {
                     salary: 0,
                     description: "",
                 }}
-                // validationSchema={registerSchema}
+                validationSchema={registerSchema}
                 onSubmit={(values: IRegister) => {
                     console.log(values);
                     addUser(values)

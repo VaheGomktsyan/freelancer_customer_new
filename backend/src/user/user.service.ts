@@ -79,7 +79,9 @@ export class UserService {
   async findAll() {
     return await this.userRepository
       .createQueryBuilder('user')
+      .where('user.role!=2')
       .select([
+        'user.id',
         'user.firstName',
         'user.lastName',
         'user.role',
@@ -94,6 +96,7 @@ export class UserService {
       .createQueryBuilder('user')
       .where('user.id=:id', { id })
       .select([
+        'user.id',
         'user.firstName',
         'user.lastName',
         'user.role',

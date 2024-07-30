@@ -12,7 +12,20 @@ export class FreelancerService {
   ) {}
 
   async findAll() {
-    return this.freelancerRepository.find();
+    return await this.freelancerRepository.find({
+      relations:{
+        user:true
+      },
+      select:{
+        userId:true,
+        salary:true,
+        user:{
+          lastName:true,
+          firstName:true,
+          email:true,
+        }
+      }
+    });
   }
 
   async findOne(userId: number) {
