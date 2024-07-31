@@ -71,6 +71,31 @@ export const Nav = () => {
                     ) : results && results.data && results.data.role == 1 ? (
                         <>
                             <>Freelancer</>
+
+
+                            <Link
+                                className={`${styles.link} ${
+                                    pathname === "/profile/freelancer/myWork"
+                                        ? styles.active
+                                        : ""
+                                }`}
+                                href="/profile/freelancer/myWork"
+                            >
+                                MyWork
+                            </Link>
+
+
+                            <Link
+                                className={`${styles.link} ${
+                                    pathname === "/profile/freelancer/works"
+                                        ? styles.active
+                                        : ""
+                                }`}
+                                href="/profile/freelancer/works"
+                            >
+                                Works
+                            </Link>
+
                         </>
                     ) : results && results.data && results.data.role == 2 ? (
                         <>

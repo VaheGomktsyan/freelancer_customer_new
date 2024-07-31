@@ -11,7 +11,6 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AuthGuard } from '@nestjs/passport';
 import { IsVerify, Login } from 'src/user/dto/update-user.dto';
 import { HasRoles } from '../roles.decorator';
 import { Role } from 'src/user/role/user.enum';

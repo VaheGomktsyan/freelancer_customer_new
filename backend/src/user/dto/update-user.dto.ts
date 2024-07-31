@@ -44,7 +44,9 @@ export class Login {
   @ApiProperty()
   username: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    default:"111111"
+  })
   @JoiSchema(Joi.string().min(6).max(12).required())
   password: string;
 }

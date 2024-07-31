@@ -10,6 +10,8 @@ import { Role } from 'src/user/role/user.enum';
 import { Skill } from 'src/skill/entities/skill.entity';
 import { SkillWork } from 'src/skill-work/entities/skill-work.entity';
 import { Freelancer } from 'src/freelancer/entities/freelancer.entity';
+import { Feedback } from 'src/feedback/entities/feedback.entity';
+import { Apply } from 'src/apply/entities/apply.entity';
 
 @Injectable()
 export class WorkService {
@@ -23,6 +25,8 @@ export class WorkService {
     private customerRepository: Repository<Customer>,
     @InjectRepository(Freelancer)
     private freelancerRepository: Repository<Freelancer>,
+    @InjectRepository(Apply)
+    private applyRepository: Repository<Apply>,
   ) {}
 
   async create(createWorkDto: CreateWorkDto, userId: number) {
@@ -52,7 +56,11 @@ export class WorkService {
   }
 
   async findAll() {
-    return this.workRepository.find();
+    return this.workRepository.find({
+      relations:{
+        workApplys:true
+      }
+    });
   }
 
   async findOne(id: number) {
@@ -96,11 +104,15 @@ export class WorkService {
       },
     });
     if (freelancer) {
-      const work = await this.workRepository.find({
+      const work = await this.applyRepository.find({
         where: {
+          freelancerId:id,
         },
         relations: {
-          workFeedbacks: true,
+          workApply:{
+            workFeedbacks:true
+          },
+          
         },
       });
       return work || { message: 'work not found' };

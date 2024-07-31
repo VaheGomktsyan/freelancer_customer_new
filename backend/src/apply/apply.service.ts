@@ -9,14 +9,15 @@ import { Freelancer } from 'src/freelancer/entities/freelancer.entity';
 import { Repository } from 'typeorm';
 import { Apply } from './entities/apply.entity';
 import { Work } from 'src/work/entities/work.entity';
+import { Customer } from 'src/customer/entities/customer.entity';
 
 @Injectable()
 export class ApplyService {
   constructor(
     @InjectRepository(Apply) private applyRepository: Repository<Apply>,
     @InjectRepository(Work) private workRepository: Repository<Work>,
-    @InjectRepository(Freelancer)
-    private freelancerRepository: Repository<Freelancer>,
+    @InjectRepository(Freelancer) private freelancerRepository: Repository<Freelancer>,
+    @InjectRepository(Customer) private customerRepository: Repository<Customer>,
   ) {}
   async create(createApplyDto: CreateApplyDto) {
     const { freelancerId, workId } = createApplyDto;
@@ -46,6 +47,7 @@ export class ApplyService {
       const apply = await this.applyRepository.find({
         where: {
           freelancerId: userId,
+          status:0
         },
         relations: {
           workApply: true,
@@ -54,6 +56,28 @@ export class ApplyService {
       return apply;
     } else {
       throw new NotFoundException('freelancer not found');
+    }
+  }
+  async findOneByCustomerId(userId: number) {
+    const customer = await this.customerRepository.findOne({
+      where: {
+        userId,
+      },
+    });
+    if (customer) {
+      const apply = await this.applyRepository.find({
+        where: {
+          workApply:{
+            customer
+          }
+        },
+        relations: {
+          workApply: true,
+        },
+      });
+      return apply;
+    } else {
+      throw new NotFoundException('customer not found');
     }
   }
   

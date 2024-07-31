@@ -39,6 +39,7 @@ export class FeedbackService {
       },
     });
 
+    
     if (!work) throw new BadRequestException('work not fount');
     if (work.customer.userId != userId)
       throw new BadRequestException('work customer error');
@@ -59,6 +60,7 @@ export class FeedbackService {
       rate,
     });
   }
+
 
   async update(userId: number, updateFeedbackDto: UpdateFeedbackDto) {
     const { workId, freelancerId, ...data } = updateFeedbackDto;

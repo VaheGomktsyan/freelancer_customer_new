@@ -27,6 +27,16 @@ export const workSlice = createApi({
             }),
             providesTags: ["Work"],
         }),
+        getWorkByFreelancer: build.query({
+            query: () => ({
+                url: `/freelancer/find`,
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            }),
+            providesTags: ["Work"],
+        }),
         getWorks: build.query({
             query: () => ({
                 url: ``,
@@ -60,6 +70,7 @@ export const workSlice = createApi({
 
 export const {
     useGetWorkByCustomerQuery,
+    useGetWorkByFreelancerQuery,
     useGetWorksQuery,
     useDeleteWorkMutation,
     useAddWorkMutation,

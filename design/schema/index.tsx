@@ -25,3 +25,6 @@ export const addWorkSchema = Yup.object({
     price: number().min(1000).max(500000).required(),
     description: string().min(1).max(100).required(),
 });
+export const addSkillSchema = Yup.object({
+    name: string().min(1).max(15).required(),
+});

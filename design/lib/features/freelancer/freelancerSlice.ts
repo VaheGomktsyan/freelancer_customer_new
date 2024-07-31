@@ -48,8 +48,7 @@ export const freelancerSlice = createApi({
         }),
         deleteSkillFreelancer: build.mutation({
             query: ({ skillId, freelancerId }) => ({
-                url: `skill-freelancer/${skillId || freelancerId}`,
-                //  ----------------------------------------- ??? ^
+                url: `skill-freelancer/${skillId}/${freelancerId}`,
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,

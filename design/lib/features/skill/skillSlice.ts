@@ -65,7 +65,7 @@ export const skillSlice = createApi({
         }),
         deleteSkillWork: build.mutation({
             query: ({ skillId, workId }:{ skillId:number, workId:number}) => ({
-                url: `skill-work/${skillId}/${  workId}`,
+                url: `skill-work/${skillId}/${workId}`,
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,

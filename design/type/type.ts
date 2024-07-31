@@ -53,6 +53,8 @@ export interface IWork {
     deadline: Date;
     description: string;
     skills: number[];
+    workFeedbacks: IFeedback;
+    workApplys:IApply[]
 }
 export interface IAddWork {
     name: string;
@@ -78,6 +80,9 @@ export interface ISkillWork {
 export interface IApply {
     freelancerId: number;
     workId: number;
+    workApply: IWork;
+    status:number
+    active:number
 }
 
 export interface IFeedback {

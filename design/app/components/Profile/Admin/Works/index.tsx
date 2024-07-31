@@ -1,6 +1,5 @@
 "use client";
 import {
-    useDeleteWorkMutation,
     useGetWorksQuery,
 } from "@/lib/features/work/workSlice";
 import { IWork } from "@/type/type";

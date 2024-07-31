@@ -1,41 +1,37 @@
 "use client";
-import {
-    useGetWorkByFreelancerQuery,
-} from "@/lib/features/work/workSlice";
+import { useGetWorksQuery } from "@/lib/features/work/workSlice";
 import { IApply, IWork } from "@/type/type";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
 
-export const MyWorkFree = () => {
+export const Works = ()=>{
     const router = useRouter();
-    const { data } = useGetWorkByFreelancerQuery("");
+    const { data } = useGetWorksQuery("");
     console.log(data);
 
     return (
         <div>
-            <h3>MyWorkFree</h3>
+            <h3>Works</h3>
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Price</th>
-                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data?.map((elm: IApply, index: number) => (
+                    {data?.map((elm: IWork, index:number) => (
                         <tr key={index}>
-                            <td>{elm.workApply.name}</td>
-                            <td>{elm.workApply.description}</td>
-                            <td>{elm.workApply.price}</td>
+                            <td>{elm.name}</td>
+                            <td>{elm.description}</td>
+                            <td>{elm.price}</td>
                             <td>
-                                {elm.status == 0 ? <button>x</button> : <></>}
+                            {elm.workApplys.length && elm.workApplys[0].status==1 ? <></>:<button>Send</button>}
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
         </div>
-    );
-};
+    )
+}

@@ -75,7 +75,6 @@ export const userApiSlice = createApi({
             providesTags: ["User"],
         }),
         deleteUserById: build.mutation<any, number>({
-            
             query: (id:number) => ({
                 url: `user/${id}`,
                 method: "DELETE",

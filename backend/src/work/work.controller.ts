@@ -82,7 +82,19 @@ export class WorkController {
     }
   }
 
-
+  @HttpCode(HttpStatus.OK)
+  @HasRoles(Role.FREELANCER)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiBearerAuth('JWT-auth')
+  @Get('/freelancer/find')
+  async getByFree(@Req() req, @Res() res: Response) {
+    try {
+      const data = await this.workService.freelancerFind(req.user.id);
+      return res.status(HttpStatus.OK).json(data);
+    } catch (e) {
+      return res.status(HttpStatus.OK).json({ message: e.message });
+    }
+  }
 
   @HttpCode(HttpStatus.OK)
   @HasRoles(Role.CUSTOMER)

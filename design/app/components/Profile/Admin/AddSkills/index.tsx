@@ -1,5 +1,6 @@
 "use client";
 import { useAddSkillMutation } from "@/lib/features/skill/skillSlice";
+import { addSkillSchema } from "@/schema";
 import { IAddSkill, ISkill } from "@/type/type";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useRouter } from "next/navigation";
@@ -17,6 +18,7 @@ export const AddSkill = () => {
                 initialValues={{
                     name: "",
                 }}
+                validationSchema={addSkillSchema}
                 onSubmit={(values: IAddSkill) => {
                     console.log(values);
                     addSkill(values)

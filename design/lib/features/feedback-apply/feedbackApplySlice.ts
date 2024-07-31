@@ -17,10 +17,23 @@ export const feedbackApplySlice = createApi({
             }),
             invalidatesTags: ["Apply"],
         }),
-        getApplys: build.query<IApply, number>({
+        getApplys: build.query({
             query: () => ({
                 url: `apply`,
                 method: "GET",
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            }),
+            providesTags: ["Apply"],
+        }),
+        findByFreelancer: build.query({
+            query: () => ({
+                url: `apply/byFreelancer`,
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             }),
             providesTags: ["Apply"],
         }),
@@ -37,8 +50,7 @@ export const feedbackApplySlice = createApi({
         }),
         deleteApply: build.mutation({
             query: ({ workId, freelancerId }) => ({
-                url: `apply/${workId || freelancerId}`,
-                //  ----------------------------------------- ??? ^
+                url: `apply/${workId}/${freelancerId}`,
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -63,7 +75,6 @@ export const feedbackApplySlice = createApi({
             Pick<IFeedback, any> & Partial<IFeedback>
         >({
             query: ({ ...patch }) => ({
-                //   ^ ----------------------------------------- ??
                 url: `feedback`,
                 method: "PATCH",
                 body: patch,
@@ -75,8 +86,7 @@ export const feedbackApplySlice = createApi({
         }),
         deleteFeedback: build.mutation({
             query: ({ workId, freelancerId }) => ({
-                url: `feedback/${workId || freelancerId}`,
-                //  ----------------------------------------- ??? ^
+                url: `feedback/${workId}/${freelancerId}`,
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -95,4 +105,5 @@ export const {
     useAddFeedbackMutation,
     useDeleteFeedbackMutation,
     useUpdateFeedbackMutation,
+    useFindByFreelancerQuery,
 } = feedbackApplySlice;

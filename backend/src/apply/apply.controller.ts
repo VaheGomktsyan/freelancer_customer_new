@@ -41,8 +41,8 @@ export class ApplyController {
   @ApiResponse({ description: 'req freelancer id' })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiBearerAuth('JWT-auth')
-  @Get('')
-  async findOne(@Req() req, @Res() res: Response) {
+  @Get('/byFreelancer')
+  async findByFreelancer(@Req() req, @Res() res: Response) {
     try {
       const data = await this.applyService.findOneByFreelancerId(+req.user.id);
       return res.status(HttpStatus.OK).json(data);
@@ -50,6 +50,24 @@ export class ApplyController {
       return res.status(HttpStatus.OK).json({ message: e.message });
     }
   }
+
+  @HttpCode(HttpStatus.OK)
+  @HasRoles(Role.CUSTOMER)
+  @ApiResponse({ description: 'req freelancer id' })
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiBearerAuth('JWT-auth')
+  @Get('/byCustomer')
+  async findByCustomer(@Req() req, @Res() res: Response) {
+    try {
+      const data = await this.applyService.findOneByCustomerId(+req.user.id);
+      return res.status(HttpStatus.OK).json(data);
+    } catch (e) {
+      return res.status(HttpStatus.OK).json({ message: e.message });
+    }
+  }
+  
+  // 
+
 
   @HttpCode(HttpStatus.OK)
   @HasRoles(Role.FREELANCER)
