@@ -17,6 +17,17 @@ export const feedbackApplySlice = createApi({
             }),
             invalidatesTags: ["Apply"],
         }),
+        sendApply: build.mutation<any, number>({
+            query: (workId: number) => ({
+                url: `apply/sendApply`,
+                method: "POST",
+                body: {workId},
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            }),
+            invalidatesTags: ["Apply"],
+        }),
         getApplys: build.query({
             query: () => ({
                 url: `apply`,
@@ -106,4 +117,5 @@ export const {
     useDeleteFeedbackMutation,
     useUpdateFeedbackMutation,
     useFindByFreelancerQuery,
+    useSendApplyMutation,
 } = feedbackApplySlice;

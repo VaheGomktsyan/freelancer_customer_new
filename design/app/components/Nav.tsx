@@ -25,6 +25,8 @@ export const Nav = () => {
                             pathname === "/profile" ? styles.active : ""
                         }`}
                         href="/profile"
+                        shallow
+                        passHref legacyBehavior
                     >
                         Profile
                     </Link>
@@ -41,6 +43,8 @@ export const Nav = () => {
                                         : ""
                                 }`}
                                 href="/profile/customer/addWork"
+                                shallow
+                                passHref legacyBehavior
                             >
                                 AddWork
                             </Link>
@@ -52,6 +56,8 @@ export const Nav = () => {
                                         : ""
                                 }`}
                                 href="/profile/customer/freelancers"
+                                shallow
+                                passHref legacyBehavior
                             >
                                 Freelancers
                             </Link>
@@ -64,6 +70,8 @@ export const Nav = () => {
                                         : ""
                                 }`}
                                 href="/profile/customer/myWork"
+                                shallow
+                                passHref legacyBehavior
                             >
                                 MyWork
                             </Link>
@@ -72,7 +80,6 @@ export const Nav = () => {
                         <>
                             <>Freelancer</>
 
-
                             <Link
                                 className={`${styles.link} ${
                                     pathname === "/profile/freelancer/myWork"
@@ -80,10 +87,11 @@ export const Nav = () => {
                                         : ""
                                 }`}
                                 href="/profile/freelancer/myWork"
+                                shallow
+                                passHref legacyBehavior
                             >
                                 MyWork
                             </Link>
-
 
                             <Link
                                 className={`${styles.link} ${
@@ -92,10 +100,11 @@ export const Nav = () => {
                                         : ""
                                 }`}
                                 href="/profile/freelancer/works"
+                                shallow
+                                passHref legacyBehavior
                             >
                                 Works
                             </Link>
-
                         </>
                     ) : results && results.data && results.data.role == 2 ? (
                         <>
@@ -107,6 +116,8 @@ export const Nav = () => {
                                         : ""
                                 }`}
                                 href="/profile/admin/addSkills"
+                                shallow
+                                passHref legacyBehavior
                             >
                                 AddSkills
                             </Link>
@@ -118,6 +129,8 @@ export const Nav = () => {
                                         : ""
                                 }`}
                                 href="/profile/admin/skills"
+                                shallow
+                                passHref legacyBehavior
                             >
                                 Skills
                             </Link>
@@ -129,6 +142,8 @@ export const Nav = () => {
                                         : ""
                                 }`}
                                 href="/profile/admin/users"
+                                shallow
+                                passHref legacyBehavior
                             >
                                 Users
                             </Link>
@@ -140,6 +155,8 @@ export const Nav = () => {
                                         : ""
                                 }`}
                                 href="/profile/admin/works"
+                                shallow
+                                passHref legacyBehavior
                             >
                                 Works
                             </Link>
@@ -150,9 +167,13 @@ export const Nav = () => {
                     <br />
                     <Link
                         className={`${styles.link} ${
-                            pathname === "/profile/settings" ? styles.active : ""
+                            pathname === "/profile/settings"
+                                ? styles.active
+                                : ""
                         }`}
                         href="/profile/settings"
+                        shallow
+                        passHref legacyBehavior
                     >
                         Settings
                     </Link>
@@ -160,6 +181,7 @@ export const Nav = () => {
                         onClick={() => {
                             delete localStorage.token;
                             router.replace("/");
+                            router.refresh()
                         }}
                     >
                         log Out
@@ -172,6 +194,8 @@ export const Nav = () => {
                             pathname === "/" ? styles.active : ""
                         }`}
                         href="/"
+                        shallow
+                        passHref legacyBehavior
                     >
                         Login
                     </Link>
@@ -180,6 +204,9 @@ export const Nav = () => {
                             pathname === "/register" ? styles.active : ""
                         }`}
                         href="/register"
+                        shallow
+                        passHref legacyBehavior
+                        replace={false}
                     >
                         Register
                     </Link>

@@ -1,7 +1,6 @@
 "use client";
-import {
-    useGetWorkByFreelancerQuery,
-} from "@/lib/features/work/workSlice";
+import { useDeleteApplyMutation } from "@/lib/features/feedback-apply/feedbackApplySlice";
+import { useGetWorkByFreelancerQuery } from "@/lib/features/work/workSlice";
 import { IApply, IWork } from "@/type/type";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
@@ -9,8 +8,16 @@ import React, { useEffect } from "react";
 export const MyWorkFree = () => {
     const router = useRouter();
     const { data } = useGetWorkByFreelancerQuery("");
+    const [deleteApply] = useDeleteApplyMutation();
     console.log(data);
 
+    const handleDelete = async (id: number) => {
+        try {
+            await deleteApply(id).unwrap();
+        } catch (err) {
+            console.error("Failed to delete the work:", err);
+        }
+    };
     return (
         <div>
             <h3>MyWorkFree</h3>
@@ -30,7 +37,17 @@ export const MyWorkFree = () => {
                             <td>{elm.workApply.description}</td>
                             <td>{elm.workApply.price}</td>
                             <td>
-                                {elm.status == 0 ? <button>x</button> : <></>}
+                                {elm.status == 0 ? (
+                                    <button
+                                        onClick={() =>
+                                            handleDelete(elm.workId)
+                                        }
+                                    >
+                                        x
+                                    </button>
+                                ) : (
+                                    <></>
+                                )}
                             </td>
                         </tr>
                     ))}

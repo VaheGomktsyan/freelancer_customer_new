@@ -16,11 +16,15 @@ export class ApplyService {
   constructor(
     @InjectRepository(Apply) private applyRepository: Repository<Apply>,
     @InjectRepository(Work) private workRepository: Repository<Work>,
-    @InjectRepository(Freelancer) private freelancerRepository: Repository<Freelancer>,
-    @InjectRepository(Customer) private customerRepository: Repository<Customer>,
+    @InjectRepository(Freelancer)
+    private freelancerRepository: Repository<Freelancer>,
+    @InjectRepository(Customer)
+    private customerRepository: Repository<Customer>,
   ) {}
-  async create(createApplyDto: CreateApplyDto) {
-    const { freelancerId, workId } = createApplyDto;
+  async create(freelancerId: number, createApplyDto: CreateApplyDto) {
+    console.log(freelancerId, createApplyDto);
+
+    const { workId } = createApplyDto;
     const freelancer = await this.freelancerRepository.findOne({
       where: { userId: freelancerId },
     });
@@ -47,7 +51,7 @@ export class ApplyService {
       const apply = await this.applyRepository.find({
         where: {
           freelancerId: userId,
-          status:0
+          status: 0,
         },
         relations: {
           workApply: true,
@@ -67,9 +71,9 @@ export class ApplyService {
     if (customer) {
       const apply = await this.applyRepository.find({
         where: {
-          workApply:{
-            customer
-          }
+          workApply: {
+            customer,
+          },
         },
         relations: {
           workApply: true,
@@ -80,7 +84,7 @@ export class ApplyService {
       throw new NotFoundException('customer not found');
     }
   }
-  
+
   async findOneByWorkId(id: number) {
     const work = await this.workRepository.findOne({
       where: {
@@ -112,6 +116,7 @@ export class ApplyService {
       where: {
         workId,
         freelancerId,
+        status: 0,
       },
     });
     if (apply) {
@@ -123,7 +128,7 @@ export class ApplyService {
         await this.applyRepository.delete({ workId, freelancerId });
         return true;
       } else {
-        throw new BadRequestException("forbidden action")
+        throw new BadRequestException('forbidden action');
       }
     } else {
       return false;

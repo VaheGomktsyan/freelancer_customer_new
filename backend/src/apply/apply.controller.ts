@@ -26,10 +26,21 @@ import { Response } from 'express';
 export class ApplyController {
   constructor(private readonly applyService: ApplyService) {}
 
-  @Post()
-  async create(@Body() createApplyDto: CreateApplyDto, @Res() res: Response) {
+  @HttpCode(HttpStatus.OK)
+  @HasRoles(Role.FREELANCER)
+  @ApiResponse({ description: 'req freelancer id' })
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiBearerAuth('JWT-auth')
+  @Post("/sendApply")
+  async sendApply(
+    @Body() createApplyDto: CreateApplyDto,
+    @Res() res: Response,
+    @Req() req,
+  ) {
     try {
-      const data = await this.applyService.create(createApplyDto);
+    console.log(req.user.id, createApplyDto);
+
+      const data = await this.applyService.create(req.user.id, createApplyDto);
       return res.status(HttpStatus.OK).json(data);
     } catch (e) {
       return res.status(HttpStatus.OK).json({ message: e.message });
@@ -65,9 +76,8 @@ export class ApplyController {
       return res.status(HttpStatus.OK).json({ message: e.message });
     }
   }
-  
-  // 
 
+  //
 
   @HttpCode(HttpStatus.OK)
   @HasRoles(Role.FREELANCER)
