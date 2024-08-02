@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import styles from "../styles/layout.module.css";
@@ -79,7 +78,6 @@ export const Nav = () => {
                     ) : results && results.data && results.data.role == 1 ? (
                         <>
                             <>Freelancer</>
-
                             <Link
                                 className={`${styles.link} ${
                                     pathname === "/profile/freelancer/myWork"

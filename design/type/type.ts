@@ -54,7 +54,7 @@ export interface IWork {
     description: string;
     skills: number[];
     workFeedbacks: IFeedback;
-    workApplys:IApply[]
+    workApplys: IApply[];
 }
 export interface IAddWork {
     name: string;
@@ -81,8 +81,8 @@ export interface IApply {
     freelancerId: number;
     workId: number;
     workApply: IWork;
-    status:number
-    active:number
+    status: number;
+    active: number;
 }
 
 export interface IFeedback {
@@ -90,4 +90,14 @@ export interface IFeedback {
     workId: number;
     rate: number;
     text: string;
+}
+
+export interface IUpdateUser {
+    firstName: string;
+    lastName: string;
+    age: number;
+}
+
+export interface IUpdatePicUrl {
+    picUrl: any;
 }

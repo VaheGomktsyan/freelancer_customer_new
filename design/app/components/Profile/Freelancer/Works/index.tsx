@@ -36,7 +36,6 @@ export const Works = () => {
                                 ) : (
                                     <button type="submit" onClick={()=>sendApply(elm.id).unwrap().then(console.log)}>Send</button>
                                 )}
-                                
                             </td>
                         </tr>
                     ))}
