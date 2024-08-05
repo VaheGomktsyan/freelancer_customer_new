@@ -12,7 +12,7 @@ export const Nav = () => {
     // console.log("=>", results.data);
 
     useEffect(() => {
-        userProfile("").unwrap().then().catch(console.warn);
+        userProfile("").unwrap().then().catch(console.warn)
     }, []);
 
     return (

@@ -8,6 +8,7 @@ import {
 import { IUpdatePicUrl, IUpdateUser, IUser } from "@/type/type";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export const Settings = () => {
     const router = useRouter();
@@ -16,6 +17,15 @@ export const Settings = () => {
     const [resetPassword] = useResetPasswordMutation();
     const [updatePassword] = useUpdatePasswordMutation();
 
+    const [formData, setFormData] = useState<any>(null);
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        if (formData) {
+            const data = new FormData();
+            data.append("file", formData);
+            updatePicUrl(data);
+        }
+    };
     return (
         <div>
             <h3>Settings</h3>
@@ -80,43 +90,21 @@ export const Settings = () => {
                 )}
             </Formik>
             <h4>Update User Picture</h4>
-            <Formik
-                initialValues={{
-                    picUrl: "",
-                }}
-                onSubmit={(values: IUpdatePicUrl) => {
-                    console.log(values);
-                    updatePicUrl(values)
-                        .unwrap()
-                        .then((res) => {})
-                        .catch(console.warn);
-                }}
-            >
-                {({
-                    values,
-                    errors,
-                    touched,
-                    handleChange,
-                    handleBlur,
-                    handleSubmit,
-                    isSubmitting,
-                }) => (
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="picUrl">Picture</label>
-                            <Field
-                                type="file"
-                                name="picUrl"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.picUrl}
-                            />
-                            <ErrorMessage name="picUrl" component="div" />
-                        </div>
-                        <button type="submit">Update Picture</button>
-                    </form>
-                )}
-            </Formik>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="picUrl">Picture</label>
+                    <input
+                        type="file"
+                        name="picUrl"
+                        onChange={(e) => {
+                            if (e.target.files?.length)
+                                setFormData(e.target.files[0]);
+                        }}
+                    />
+                </div>
+                <button type="submit">Update Picture</button>
+            </form>
+            <h4>Reset Password</h4>
         </div>
     );
 };

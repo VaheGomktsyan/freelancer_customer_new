@@ -11,9 +11,9 @@ export const MyWorkFree = () => {
     const [deleteApply] = useDeleteApplyMutation();
     console.log(data);
 
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (workId: number) => {
         try {
-            await deleteApply(id).unwrap();
+            await deleteApply(workId).unwrap();
         } catch (err) {
             console.error("Failed to delete the work:", err);
         }

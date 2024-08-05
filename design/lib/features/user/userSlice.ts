@@ -103,8 +103,8 @@ export const userApiSlice = createApi({
             }),
             invalidatesTags: ["User"],
         }),
-        updatePicUrl: build.mutation<void, Pick<IUser, any> & Partial<IUser>>({
-            query: ({ ...patch }) => ({
+        updatePicUrl: build.mutation<void, any>({
+            query: (patch:any) => ({
                 url: `user/updatePicUrl`,
                 method: "PATCH",
                 body: patch,
