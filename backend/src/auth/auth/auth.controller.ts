@@ -62,6 +62,14 @@ export class AuthController {
   }
 
   @HttpCode(HttpStatus.OK)
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('JWT-auth')
+  @Get('getProfile')
+  async profile(@Request() req) {
+    return await this.authService.findUserById(req.user.id);
+  }
+
+  @HttpCode(HttpStatus.OK)
   @HasRoles(Role.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @ApiBearerAuth('JWT-auth')

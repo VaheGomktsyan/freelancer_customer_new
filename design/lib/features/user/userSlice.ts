@@ -40,6 +40,16 @@ export const userApiSlice = createApi({
             }),
             invalidatesTags: ["User"],
         }),
+        getProfile: build.query({
+            query: () => ({
+                url: `auth/getProfile`,
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            }),
+            providesTags: ["User"],
+        }),
         adminPage: build.mutation({
             query: () => ({
                 url: `auth/admin`,
@@ -158,4 +168,5 @@ export const {
     useUpdatePasswordMutation,
     useUpdatePicUrlMutation,
     useUpdateUserMutation,
+    useGetProfileQuery,
 } = userApiSlice;

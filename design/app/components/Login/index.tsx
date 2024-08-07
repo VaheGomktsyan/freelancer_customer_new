@@ -1,5 +1,6 @@
 "use client";
 import { useLoginMutation } from "@/lib/features/user/userSlice";
+import { loginSchema } from "@/schema";
 import { ILogin } from "@/type/type";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,7 @@ export const Login = () => {
                     username: "",
                     password: "",
                 }}
+                validationSchema={loginSchema}
                 onSubmit={(values: ILogin) => {
                     console.log(values);
                     logUser(values)

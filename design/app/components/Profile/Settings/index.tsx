@@ -5,7 +5,8 @@ import {
     useUpdatePicUrlMutation,
     useUpdateUserMutation,
 } from "@/lib/features/user/userSlice";
-import { IUpdatePicUrl, IUpdateUser, IUser } from "@/type/type";
+import { UpdateUserSchema } from "@/schema";
+import { IResetPassword, IUpdatePicUrl, IUpdateUser, IUser } from "@/type/type";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -37,6 +38,7 @@ export const Settings = () => {
                     age: 0,
                     picUrl: "",
                 }}
+                validationSchema={UpdateUserSchema}
                 onSubmit={(values: IUpdateUser) => {
                     console.log(values);
                     updateUser(values).unwrap();
@@ -104,7 +106,56 @@ export const Settings = () => {
                 </div>
                 <button type="submit">Update Picture</button>
             </form>
-            <h4>Reset Password</h4>
+            <div>
+                <h4>Reset Password</h4>
+                <Formik
+                    initialValues={{
+                        code: 0,
+                        password: "",
+                        confirmPassword: "",
+                    }}
+                    onSubmit={(values: IResetPassword) => {
+                        console.log(values);
+                        resetPassword(values).unwrap();
+                    }}
+                >
+                    {({
+                        values,
+                        errors,
+                        touched,
+                        handleChange,
+                        handleBlur,
+                        handleSubmit,
+                        isSubmitting,
+                    }) => (
+                        <form onSubmit={handleSubmit}>
+                            <div>
+                                <label htmlFor="password">Password</label>
+                                <Field
+                                    type="text"
+                                    name="password"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.password}
+                                />
+                                <ErrorMessage name="password" component="div" />
+                            </div>
+                            <div>
+                                <label htmlFor="confirmPassword">ConfirmPassword</label>
+                                <Field
+                                    type="text"
+                                    name="confirmPassword"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.confirmPassword}
+                                />
+                                <ErrorMessage name="confirmPassword" component="div" />
+                            </div>
+                            <button type="submit">Reset Password</button>
+                        </form>
+                    )}
+                </Formik>
+            </div>
         </div>
     );
 };

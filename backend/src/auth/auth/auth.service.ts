@@ -64,4 +64,6 @@ export class AuthService {
   async findUserById(userId:number){
     return await this.usersService.findOne(userId)
   }
+
+ 
 }

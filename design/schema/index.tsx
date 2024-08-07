@@ -15,9 +15,9 @@ export const registerSchema = Yup.object({
     confirmpassword: Yup.string()
         .oneOf([Yup.ref("password")], "Passwords must match")
         .required("Please confirm your password"),
-    role: number().min(0).max(2).required(),
-    salary: number().min(1000).max(1000000).required(),
-    description: string().min(3).required(),
+    role: number().min(0).max(1).required(),
+    salary: number().min(1000).max(1000000),
+    description: string().min(3),
 });
 
 export const addWorkSchema = Yup.object({
@@ -27,4 +27,10 @@ export const addWorkSchema = Yup.object({
 });
 export const addSkillSchema = Yup.object({
     name: string().min(1).max(15).required(),
+});
+
+export const UpdateUserSchema = Yup.object({
+    lastName: string().min(1).max(15).required(),
+    firstName: string().min(1).max(15).required(),
+    age: number().min(18).max(120).required(),
 });

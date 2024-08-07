@@ -3,14 +3,16 @@ import { useRegisterMutation } from "@/lib/features/user/userSlice";
 import { registerSchema } from "@/schema";
 import { IRegister, IUser } from "@/type/type";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export const Register = () => {
     const [addUser] = useRegisterMutation();
+    const router = useRouter();
 
     return (
         <div>
-            Register
+            <h3>Register</h3>
             <Formik
                 initialValues={{
                     firstName: "",
@@ -19,7 +21,7 @@ export const Register = () => {
                     email: "",
                     password: "",
                     confirmpassword: "",
-                    role: 0,
+                    role: -1,
                     salary: 0,
                     description: "",
                 }}
@@ -28,7 +30,7 @@ export const Register = () => {
                     console.log(values);
                     addUser(values)
                         .unwrap()
-                        .then(console.log)
+                        .then(() => router.push("/"))
                         .catch(console.warn);
                 }}
             >
@@ -122,45 +124,59 @@ export const Register = () => {
                                 component="div"
                             />
                         </div>
-
                         <div>
                             <label htmlFor="role">Role</label>
                             <Field
+                                as="select"
                                 type="role"
                                 id="role"
                                 name="role"
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.role}
-                            />
+                            >
+                                <option value="" hidden>
+                                    ...
+                                </option>
+                                <option value="0">Customer</option>
+                                <option value="1">Freelancer</option>
+                            </Field>
                             <ErrorMessage name="role" component="div" />
                         </div>
 
-                        <div>
-                            <label htmlFor="salary">Salary</label>
-                            <Field
-                                type="salary"
-                                id="salary"
-                                name="salary"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.salary}
-                            />
-                            <ErrorMessage name="salary" component="div" />
-                        </div>
-
-                        <div>
-                            <label htmlFor="description">description</label>
-                            <Field
-                                type="text"
-                                id="description"
-                                name="description"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.description}
-                            />
-                            <ErrorMessage name="description" component="div" />
-                        </div>
+                        {values.role && +values.role == 0 ? (
+                            <div>
+                                <label htmlFor="description">description</label>
+                                <Field
+                                as="textarea"
+                                    type="text"
+                                    id="description"
+                                    name="description"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.description}
+                                />
+                                <ErrorMessage
+                                    name="description"
+                                    component="div"
+                                />
+                            </div>
+                        ) : values.role && +values.role == 1 ? (
+                            <div>
+                                <label htmlFor="salary">Salary</label>
+                                <Field
+                                    type="salary"
+                                    id="salary"
+                                    name="salary"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.salary}
+                                />
+                                <ErrorMessage name="salary" component="div" />
+                            </div>
+                        ) : (
+                            <></>
+                        )}
 
                         <button type="submit">Register</button>
                     </form>

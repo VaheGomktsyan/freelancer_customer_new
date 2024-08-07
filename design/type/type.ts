@@ -101,3 +101,9 @@ export interface IUpdateUser {
 export interface IUpdatePicUrl {
     picUrl: any;
 }
+
+export interface IResetPassword {
+    code: number;
+    password: string;
+    confirmPassword: string;
+}

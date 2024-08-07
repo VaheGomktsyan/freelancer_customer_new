@@ -2,22 +2,28 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import styles from "../styles/layout.module.css";
-import { useProfilePageMutation } from "@/lib/features/user/userSlice";
+import { useGetProfileQuery, useProfilePageMutation } from "@/lib/features/user/userSlice";
 import { useEffect } from "react";
 
 export const Nav = () => {
     const pathname = usePathname();
-    const [userProfile, results] = useProfilePageMutation();
+    const {data} =  useGetProfileQuery('')
+    console.log(data);
+    
+    // const [userProfile, results] = useProfilePageMutation();
     const router = useRouter();
     // console.log("=>", results.data);
 
-    useEffect(() => {
-        userProfile("").unwrap().then().catch(console.warn)
-    }, []);
+    // useEffect(() => {
+    //     userProfile("").unwrap().then((res)=>{
+    //         console.log("res==>", res);
+            
+    //     }).catch(console.warn)
+    // }, []);
 
     return (
         <nav className={styles.nav}>
-            {results && results.data ? (
+            {data ? (
                 <>
                     <Link
                         className={`${styles.link} ${
@@ -26,11 +32,12 @@ export const Nav = () => {
                         href="/profile"
                         shallow
                         passHref legacyBehavior
+                        
                     >
                         Profile
                     </Link>
 
-                    {results && results.data && results.data.role == 0 ? (
+                    {data && data.role == 0 ? (
                         <>
                             <br />
                             <>Customer</>
@@ -75,7 +82,7 @@ export const Nav = () => {
                                 MyWork
                             </Link>
                         </>
-                    ) : results && results.data && results.data.role == 1 ? (
+                    ) : data && data.role == 1 ? (
                         <>
                             <>Freelancer</>
                             <Link
@@ -104,7 +111,7 @@ export const Nav = () => {
                                 Works
                             </Link>
                         </>
-                    ) : results && results.data && results.data.role == 2 ? (
+                    ) : data && data.role == 2 ? (
                         <>
                             <br />
                             <Link
@@ -179,7 +186,7 @@ export const Nav = () => {
                         onClick={() => {
                             delete localStorage.token;
                             router.replace("/");
-                            router.refresh()
+                            location.reload()
                         }}
                     >
                         log Out
