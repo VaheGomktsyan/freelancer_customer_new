@@ -2,13 +2,13 @@ import { IAddWork, IWork } from "@/type/type";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const workSlice = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/work" }),
+    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/" }),
     reducerPath: "WorkApi",
-    tagTypes: ["Work"],
+    tagTypes: ["Work", "Apply"],
     endpoints: (build) => ({
         addWork: build.mutation<any, IAddWork>({
             query: (data: IAddWork) => ({
-                url: ``,
+                url: `work`,
                 method: "POST",
                 body: data,
                 headers: {
@@ -17,9 +17,21 @@ export const workSlice = createApi({
             }),
             invalidatesTags: ["Work"],
         }),
+
+        sendApply: build.mutation<any, number>({
+            query: (workId: number) => ({
+                url: `apply/sendApply`,
+                method: "POST",
+                body: { workId },
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
+            }),
+            invalidatesTags: ["Apply","Work"],
+        }),
         getWorkByCustomer: build.query({
             query: () => ({
-                url: `/customer/find`,
+                url: `work/customer/find`,
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -29,7 +41,7 @@ export const workSlice = createApi({
         }),
         getWorkByFreelancer: build.query({
             query: () => ({
-                url: `/freelancer/find`,
+                url: `work/freelancer/find`,
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
@@ -39,14 +51,14 @@ export const workSlice = createApi({
         }),
         getWorks: build.query({
             query: () => ({
-                url: ``,
+                url: `work`,
                 method: "GET",
             }),
             providesTags: ["Work"],
         }),
         updateWork: build.mutation<void, Pick<IWork, any> & Partial<IWork>>({
             query: ({ id, ...patch }) => ({
-                url: `/${id}`,
+                url: `work/${id}`,
                 method: "PATCH",
                 body: patch,
                 headers: {
@@ -57,13 +69,13 @@ export const workSlice = createApi({
         }),
         deleteWork: build.mutation({
             query: (id) => ({
-                url: `/${id}`,
+                url: `work/${id}`,
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             }),
-            invalidatesTags: ["Work"],
+            invalidatesTags: ["Apply","Work"],
         }),
     }),
 });
@@ -75,4 +87,5 @@ export const {
     useDeleteWorkMutation,
     useAddWorkMutation,
     useUpdateWorkMutation,
+    useSendApplyMutation,
 } = workSlice;

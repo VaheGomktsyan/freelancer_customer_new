@@ -112,6 +112,11 @@ export class ApplyService {
   }
 
   async remove(workId: number, freelancerId: number, userId: number) {
+    const freelancer = await this.freelancerRepository.findOne({
+      where: {
+        userId: freelancerId,
+      },
+    });
     const apply = await this.applyRepository.findOne({
       where: {
         workId,
@@ -126,12 +131,24 @@ export class ApplyService {
       });
       if (work.customer.userId == userId || userId == freelancerId) {
         await this.applyRepository.delete({ workId, freelancerId });
-        return true;
-      } else {
-        throw new BadRequestException('forbidden action');
       }
-    } else {
-      return false;
     }
+
+    // if (freelancer) {
+    //   const work = await this.applyRepository.find({
+    //     where: {
+    //       freelancerId: freelancerId,
+    //     },
+    //     relations: {
+    //       workApply: {
+    //         workFeedbacks: true,
+    //       },
+    //     },
+    //   });
+      // return work || { message: 'work not found' };
+      return true
+    // } else {
+      // return { message: 'freelancer not found' };
+    // }
   }
 }

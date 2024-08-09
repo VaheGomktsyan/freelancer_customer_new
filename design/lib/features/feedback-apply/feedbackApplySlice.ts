@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const feedbackApplySlice = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3001/" }),
     reducerPath: "FeedbackApplyApi",
-    tagTypes: ["Apply", "Feedback"],
+    tagTypes: ["Apply", "Feedback", "Work"],
     endpoints: (build) => ({
         addApply: build.mutation<any, IApply>({
             query: (data: IApply) => ({
@@ -17,17 +17,18 @@ export const feedbackApplySlice = createApi({
             }),
             invalidatesTags: ["Apply"],
         }),
-        sendApply: build.mutation<any, number>({
-            query: (workId: number) => ({
-                url: `apply/sendApply`,
-                method: "POST",
-                body: {workId},
-                headers: {
-                    Authorization: `Bearer ${localStorage.token}`,
-                },
-            }),
-            invalidatesTags: ["Apply"],
-        }),
+
+        // sendApply: build.mutation<any, number>({
+        //     query: (workId: number) => ({
+        //         url: `apply/sendApply`,
+        //         method: "POST",
+        //         body: {workId},
+        //         headers: {
+        //             Authorization: `Bearer ${localStorage.token}`,
+        //         },
+        //     }),
+        //     invalidatesTags: ["Apply"],
+        // }),
         getApplys: build.query({
             query: () => ({
                 url: `apply`,
@@ -67,7 +68,7 @@ export const feedbackApplySlice = createApi({
                     Authorization: `Bearer ${localStorage.token}`,
                 },
             }),
-            invalidatesTags: ["Apply"],
+            invalidatesTags: ["Apply" , "Work"],
         }),
         //  Feedback -------------
         addFeedback: build.mutation<any, IFeedback>({
@@ -117,5 +118,5 @@ export const {
     useDeleteFeedbackMutation,
     useUpdateFeedbackMutation,
     useFindByFreelancerQuery,
-    useSendApplyMutation,
+    // useSendApplyMutation,
 } = feedbackApplySlice;

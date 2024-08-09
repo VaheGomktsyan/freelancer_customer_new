@@ -1,8 +1,8 @@
 "use client";
-import { useAddApplyMutation, useSendApplyMutation } from "@/lib/features/feedback-apply/feedbackApplySlice";
 import { useProfilePageMutation } from "@/lib/features/user/userSlice";
 import {
     useGetWorksQuery,
+    useSendApplyMutation,
 } from "@/lib/features/work/workSlice";
 import { IWork } from "@/type/type";
 import { useRouter } from "next/navigation";
