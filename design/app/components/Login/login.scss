@@ -1,40 +1,80 @@
 .login-card {
     display: flex;
-    justify-content: center; 
+    justify-content: center;
     flex-direction: column;
     align-items: center;
+    position: absolute;
+    width: 600px;
+    height: 500px;
+    left: 657.78px;
+    top: 41.86px;
 }
 
-.login-card h3{
+.login_photo {
+    position: absolute;
+    width: 502px;
+    height: 479.98px;
+    left: 138px;
+    top: calc(50% - 479.98px / 2 - 8.01px);
+}
+
+.svg1 {
+    position: absolute;
+    width: 174.39px;
+    height: 174.31px;
+    left: 640px;
+    top: -51px;
+}
+
+.svg2 {
+    position: absolute;
+    left: 62.27%;
+    right: 33.91%;
+    top: 83.89%;
+    bottom: 10.22%;
+}
+
+.svg3 {
+    position: absolute;
+    left: 97.03%;
+    right: -0.86%;
+    top: 17.43%;
+    bottom: 76.68%;
+}
+
+.login-card h3 {
     font-size: 25px;
     color: rgb(37, 37, 37);
     font-family: "Gill Sans Extrabold", sans-serif;
 }
 
-.input-field{
-    width: 270px;
-    padding: 7px;
+.input-field {
+    width: 300px;
+    padding: 5px;
     display: flex;
     background-color: rgb(235, 235, 235);
     border-radius: 7px;
     border: none;
-
 }
 
-.input_label{
+.input_label {
     font-size: 10px;
     color: rgb(131, 131, 131);
     letter-spacing: 1px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
 }
 
-.login_input{
+.login_input {
     padding-bottom: 8px;
 }
 
-.err_message{
+.err_message {
     font-size: 14px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
 }
 
 .log_button {
@@ -50,68 +90,20 @@
     height: 20px;
     padding: 15px;
     margin-top: 20px;
-}
-
-.log_button button:hover{
-    background-color: #2980b9;
     transition: 0.5s;
 }
 
-//  ---------------------------------------------------
+.log_button_div button:hover {
+    background-color: #2980b9;
+}
 
-// .login-container{
-//     display: grid;
-//     justify-content: center;
-//     align-content: center;
-//     height: 100vh;
-//     h3{
-//         color:blueviolet;
-//         font-size: 35px;
-//         font-family: gabriola;
+.a_href {
+    text-decoration: none;
+    font-size: 12px;
+    color: rgba(131, 131, 131, 0.753);
+    display: flex;
+    justify-content: end;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+}
 
-//     }
-//     form{
-//         display: grid;
-//         gap: 20px;
-//         .login_input{
-//             position: relative;
-//             label{
-//                 position: absolute;
-//                 top: -5px;
-//                 left: 10px;
-//                 font-size: 10px;
-//             }
-//             .input-field{
-//                 padding: 10px 20px;
-//                 background-color: rgba(255, 228, 196, 0.356);
-//                 border: none;
-//                 outline: none;
-//                 border: 1px solid rgb(245, 244, 203);
-//                 &:hover{
-//                     background-color: rgba(145, 133, 118, 0.493);
-//                 }
-//                 &:focus{
-//                     background-color: rgba(145, 133, 118, 0.199);
-//                 }
-//             }
-//             .err_message{
-//                 position: absolute;
-//                 bottom: -5px;
-//                 left: 10px;
-//                 color: brown;
-//                 font-size: 10px; 
-//             }
-            
-//         }
-//         .log_button{
-//             padding: 10px 20px;
-//             background-color: rgba(255, 228, 196, 0.356);
-//             border: none;
-//             outline: none;
-//             border: 1px solid rgb(245, 244, 203);
-//             &:hover{
-//                 background-color: rgba(145, 133, 118, 0.493);
-//             }
-//         }
-//     }
-// }

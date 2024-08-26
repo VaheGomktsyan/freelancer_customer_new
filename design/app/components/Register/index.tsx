@@ -5,13 +5,14 @@ import { IRegister, IUser } from "@/type/type";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import React from "react";
+import "./register.scss";
 
 export const Register = () => {
     const [addUser] = useRegisterMutation();
     const router = useRouter();
 
     return (
-        <div>
+        <div className="register_container">
             <h3>Register</h3>
             <Formik
                 initialValues={{
@@ -148,7 +149,7 @@ export const Register = () => {
                             <div>
                                 <label htmlFor="description">description</label>
                                 <Field
-                                as="textarea"
+                                    as="textarea"
                                     type="text"
                                     id="description"
                                     name="description"
