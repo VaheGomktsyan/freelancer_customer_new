@@ -2,14 +2,17 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import styles from "../styles/layout.module.css";
-import { useGetProfileQuery, useProfilePageMutation } from "@/lib/features/user/userSlice";
-import { useEffect } from "react";
+import {
+    useGetProfileQuery,
+    useProfilePageMutation,
+} from "@/lib/features/user/userSlice";
+import "./nav.scss";
 
 export const Nav = () => {
     const pathname = usePathname();
-    const {data} =  useGetProfileQuery('')
+    const { data } = useGetProfileQuery("");
     console.log(data);
-    
+
     // const [userProfile, results] = useProfilePageMutation();
     const router = useRouter();
     // console.log("=>", results.data);
@@ -17,12 +20,12 @@ export const Nav = () => {
     // useEffect(() => {
     //     userProfile("").unwrap().then((res)=>{
     //         console.log("res==>", res);
-            
+
     //     }).catch(console.warn)
     // }, []);
 
     return (
-        <nav className={styles.nav}>
+        <nav className='nav'>
             {data ? (
                 <>
                     <Link
@@ -31,8 +34,8 @@ export const Nav = () => {
                         }`}
                         href="/profile"
                         shallow
-                        passHref legacyBehavior
-                        
+                        passHref
+                        legacyBehavior
                     >
                         Profile
                     </Link>
@@ -50,7 +53,8 @@ export const Nav = () => {
                                 }`}
                                 href="/profile/customer/addWork"
                                 shallow
-                                passHref legacyBehavior
+                                passHref
+                                legacyBehavior
                             >
                                 AddWork
                             </Link>
@@ -63,7 +67,8 @@ export const Nav = () => {
                                 }`}
                                 href="/profile/customer/freelancers"
                                 shallow
-                                passHref legacyBehavior
+                                passHref
+                                legacyBehavior
                             >
                                 Freelancers
                             </Link>
@@ -77,7 +82,8 @@ export const Nav = () => {
                                 }`}
                                 href="/profile/customer/myWork"
                                 shallow
-                                passHref legacyBehavior
+                                passHref
+                                legacyBehavior
                             >
                                 MyWork
                             </Link>
@@ -93,7 +99,8 @@ export const Nav = () => {
                                 }`}
                                 href="/profile/freelancer/myWork"
                                 shallow
-                                passHref legacyBehavior
+                                passHref
+                                legacyBehavior
                             >
                                 MyWork
                             </Link>
@@ -106,7 +113,8 @@ export const Nav = () => {
                                 }`}
                                 href="/profile/freelancer/works"
                                 shallow
-                                passHref legacyBehavior
+                                passHref
+                                legacyBehavior
                             >
                                 Works
                             </Link>
@@ -122,7 +130,8 @@ export const Nav = () => {
                                 }`}
                                 href="/profile/admin/addSkills"
                                 shallow
-                                passHref legacyBehavior
+                                passHref
+                                legacyBehavior
                             >
                                 AddSkills
                             </Link>
@@ -135,7 +144,8 @@ export const Nav = () => {
                                 }`}
                                 href="/profile/admin/skills"
                                 shallow
-                                passHref legacyBehavior
+                                passHref
+                                legacyBehavior
                             >
                                 Skills
                             </Link>
@@ -148,7 +158,8 @@ export const Nav = () => {
                                 }`}
                                 href="/profile/admin/users"
                                 shallow
-                                passHref legacyBehavior
+                                passHref
+                                legacyBehavior
                             >
                                 Users
                             </Link>
@@ -161,7 +172,8 @@ export const Nav = () => {
                                 }`}
                                 href="/profile/admin/works"
                                 shallow
-                                passHref legacyBehavior
+                                passHref
+                                legacyBehavior
                             >
                                 Works
                             </Link>
@@ -178,7 +190,8 @@ export const Nav = () => {
                         }`}
                         href="/profile/settings"
                         shallow
-                        passHref legacyBehavior
+                        passHref
+                        legacyBehavior
                     >
                         Settings
                     </Link>
@@ -186,7 +199,7 @@ export const Nav = () => {
                         onClick={() => {
                             delete localStorage.token;
                             router.replace("/");
-                            location.reload()
+                            location.reload();
                         }}
                     >
                         log Out
@@ -194,27 +207,8 @@ export const Nav = () => {
                 </>
             ) : (
                 <>
-                    <Link
-                        className={`${styles.link} ${
-                            pathname === "/" ? styles.active : ""
-                        }`}
-                        href="/"
-                        shallow
-                        passHref legacyBehavior
-                    >
-                        Login
-                    </Link>
-                    <Link
-                        className={`${styles.link} ${
-                            pathname === "/register" ? styles.active : ""
-                        }`}
-                        href="/register"
-                        shallow
-                        passHref legacyBehavior
-                        replace={false}
-                    >
-                        Register
-                    </Link>
+                 
+                  
                 </>
             )}
         </nav>

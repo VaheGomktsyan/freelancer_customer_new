@@ -1,45 +1,63 @@
-.login-card {
+.login-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    flex-direction: column;
+    min-height: 100vh;
     align-items: center;
-    position: absolute;
-    width: 600px;
-    height: 500px;
-    left: 657.78px;
-    top: 41.86px;
-}
-
-.login_photo {
-    position: absolute;
-    width: 502px;
-    height: 479.98px;
-    left: 138px;
-    top: calc(50% - 479.98px / 2 - 8.01px);
+    img {
+        width: clamp(100px, 80%, 502px);
+    }
+    .login-card {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: clamp(100px, 80%, 600px);
+        .input-field {
+            width: 100%;
+            padding: 5px;
+            display: flex;
+            background-color: rgb(235, 235, 235);
+            border-radius: 7px;
+            border: none;
+            outline: none;
+            position: relative;
+            z-index: 1;
+        }
+    }
+    .log_button_link {
+        display: block;
+        margin: auto;
+        text-align: center;
+    }
+    form {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+    }
 }
 
 .svg1 {
     position: absolute;
-    width: 174.39px;
+    width: clamp(10px, 30%, 174.39px);
     height: 174.31px;
-    left: 640px;
+    right: 10px;
     top: -51px;
 }
 
 .svg2 {
     position: absolute;
-    left: 62.27%;
-    right: 33.91%;
-    top: 83.89%;
-    bottom: 10.22%;
+    width: clamp(10px, 30%, 300px);
+    bottom: 6%;
+    left: 0%;
 }
 
 .svg3 {
     position: absolute;
-    left: 97.03%;
-    right: -0.86%;
+    right: 0;
+    width: clamp(5px, 5%, 39px);
     top: 17.43%;
-    bottom: 76.68%;
 }
 
 .login-card h3 {
@@ -48,19 +66,10 @@
     font-family: "Gill Sans Extrabold", sans-serif;
 }
 
-.input-field {
-    width: 300px;
-    padding: 5px;
-    display: flex;
-    background-color: rgb(235, 235, 235);
-    border-radius: 7px;
-    border: none;
-}
-
 .input_label {
     font-size: 10px;
     color: rgb(131, 131, 131);
-    letter-spacing: 1px;
+        text-align: center;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
         sans-serif;
@@ -68,6 +77,7 @@
 
 .login_input {
     padding-bottom: 8px;
+            width: clamp(100px, 100%, 350px);
 }
 
 .err_message {
@@ -106,4 +116,3 @@
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
         sans-serif;
 }
-
