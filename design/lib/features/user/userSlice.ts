@@ -143,9 +143,6 @@ export const userApiSlice = createApi({
                     url: `user/forgetPassword/${email}`,
                     method: "PATCH",
                     body: patch,
-                    headers: {
-                        Authorization: `Bearer ${localStorage.token}`,
-                    },
                 }),
                 invalidatesTags: ["User"],
             }

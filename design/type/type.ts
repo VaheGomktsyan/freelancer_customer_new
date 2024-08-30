@@ -107,3 +107,8 @@ export interface IResetPassword {
     password: string;
     confirmPassword: string;
 }
+
+export interface IForgotPassword {
+    username: string;
+}
+
