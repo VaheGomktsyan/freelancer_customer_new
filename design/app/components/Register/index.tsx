@@ -14,193 +14,272 @@ export const Register = () => {
 
     return (
         <div>
-               <Link
-                        href="/"
-                        shallow
-                        passHref
-                        legacyBehavior
-                    >
-                        Login
-                    </Link>
+            <Link href="/" shallow passHref legacyBehavior>
+                Login
+            </Link>
             <div className="register_container">
-                <h3>Register</h3>
-                <Formik
-                    initialValues={{
-                        firstName: "",
-                        lastName: "",
-                        age: 0,
-                        email: "",
-                        password: "",
-                        confirmpassword: "",
-                        role: -1,
-                        salary: 0,
-                        description: "",
-                    }}
-                    validationSchema={registerSchema}
-                    onSubmit={(values: IRegister) => {
-                        console.log(values);
-                        addUser(values)
-                            .unwrap()
-                            .then(() => router.push("/"))
-                            .catch(console.warn);
-                    }}
-                >
-                    {({
-                        values,
-                        errors,
-                        touched,
-                        handleChange,
-                        handleBlur,
-                        handleSubmit,
-                        isSubmitting,
-                    }) => (
-                        <form onSubmit={handleSubmit}>
-                            <div>
-                                <label htmlFor="firstName">firstName</label>
-                                <Field
-                                    type="text"
-                                    name="firstName"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.firstName}
-                                />
-                                <ErrorMessage
-                                    name="firstName"
-                                    component="div"
-                                />
-                            </div>
+                <div className="reg_card">
+                    <h3>Sign Up</h3>
+                    <Formik
+                        initialValues={{
+                            firstName: "",
+                            lastName: "",
+                            age: 0,
+                            email: "",
+                            password: "",
+                            confirmpassword: "",
+                            role: -1,
+                            salary: 0,
+                            description: "",
+                        }}
+                        validationSchema={registerSchema}
+                        onSubmit={(values: IRegister) => {
+                            console.log(values);
+                            addUser(values)
+                                .unwrap()
+                                .then(() => router.push("/"))
+                                .catch(console.warn);
+                        }}
+                    >
+                        {({
+                            values,
+                            errors,
+                            touched,
+                            handleChange,
+                            handleBlur,
+                            handleSubmit,
+                            isSubmitting,
+                        }) => (
+                            <form onSubmit={handleSubmit}>
+                                <div className="reg_input_names">
+                                    <div>
+                                        <label
+                                            htmlFor="firstName"
+                                            className="input_label"
+                                        >
+                                            FirstName
+                                        </label>
+                                        <Field
+                                            type="text"
+                                            name="firstName"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.firstName}
+                                            className="input-field-names"
+                                        />
+                                        <ErrorMessage
+                                            name="firstName"
+                                            component="div"
+                                            className="err_message"
+                                        />
+                                    </div>
+                                    <div className="input_label_names">
+                                        <label
+                                            htmlFor="lastName"
+                                            className="input_label"
+                                        >
+                                            LastName
+                                        </label>
+                                        <Field
+                                            type="text"
+                                            name="lastName"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.lastName}
+                                            className="input-field-names"
+                                        />
+                                        <ErrorMessage
+                                            name="lastName"
+                                            component="div"
+                                            className="err_message"
+                                        />
+                                    </div>
+                                </div>
 
-                            <div>
-                                <label htmlFor="lastName">lastName</label>
-                                <Field
-                                    type="text"
-                                    name="lastName"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.lastName}
-                                />
-                                <ErrorMessage name="lastName" component="div" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="age">Age</label>
-                                <Field
-                                    type="text"
-                                    id="age"
-                                    name="age"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.age}
-                                />
-                                <ErrorMessage name="age" component="div" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="email">Email</label>
-                                <Field
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.email}
-                                />
-                                <ErrorMessage name="email" component="div" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="password">Password</label>
-                                <Field
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.password}
-                                />
-                                <ErrorMessage name="password" component="div" />
-                            </div>
-
-                            <div>
-                                <label htmlFor="confirmpassword">
-                                    Confirm Password
-                                </label>
-                                <Field
-                                    type="password"
-                                    id="confirmpassword"
-                                    name="confirmpassword"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.confirmpassword}
-                                />
-                                <ErrorMessage
-                                    name="confirmpassword"
-                                    component="div"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="role">Role</label>
-                                <Field
-                                    as="select"
-                                    type="role"
-                                    id="role"
-                                    name="role"
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.role}
-                                >
-                                    <option value="" hidden>
-                                        ...
-                                    </option>
-                                    <option value="0">Customer</option>
-                                    <option value="1">Freelancer</option>
-                                </Field>
-                                <ErrorMessage name="role" component="div" />
-                            </div>
-
-                            {values.role && +values.role == 0 ? (
-                                <div>
-                                    <label htmlFor="description">
-                                        description
+                                <div className="reg_input">
+                                    <label
+                                        htmlFor="age"
+                                        className="input_label"
+                                    >
+                                        Age
                                     </label>
                                     <Field
-                                        as="textarea"
                                         type="text"
-                                        id="description"
-                                        name="description"
+                                        id="age"
+                                        name="age"
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        value={values.description}
+                                        value={values.age}
+                                        className="input-field"
                                     />
                                     <ErrorMessage
-                                        name="description"
+                                        name="age"
                                         component="div"
+                                        className="err_message"
                                     />
                                 </div>
-                            ) : values.role && +values.role == 1 ? (
-                                <div>
-                                    <label htmlFor="salary">Salary</label>
-                                    <Field
-                                        type="salary"
-                                        id="salary"
-                                        name="salary"
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                        value={values.salary}
-                                    />
-                                    <ErrorMessage
-                                        name="salary"
-                                        component="div"
-                                    />
-                                </div>
-                            ) : (
-                                <></>
-                            )}
 
-                            <button type="submit">Register</button>
-                        </form>
-                    )}
-                </Formik>
+                                <div className="reg_input">
+                                    <label
+                                        htmlFor="email"
+                                        className="input_label"
+                                    >
+                                        Email
+                                    </label>
+                                    <Field
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        value={values.email}
+                                        className="input-field"
+                                    />
+                                    <ErrorMessage
+                                        name="email"
+                                        component="div"
+                                        className="err_message"
+                                    />
+                                </div>
+
+                                <div className="reg_input">
+                                    <label
+                                        htmlFor="password"
+                                        className="input_label"
+                                    >
+                                        Password
+                                    </label>
+                                    <Field
+                                        type="password"
+                                        id="password"
+                                        name="password"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        value={values.password}
+                                        className="input-field"
+                                    />
+                                    <ErrorMessage
+                                        name="password"
+                                        component="div"
+                                        className="err_message"
+                                    />
+                                </div>
+
+                                <div className="reg_input">
+                                    <label
+                                        htmlFor="confirmpassword"
+                                        className="input_label"
+                                    >
+                                        Confirm Password
+                                    </label>
+                                    <Field
+                                        type="password"
+                                        id="confirmpassword"
+                                        name="confirmpassword"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        value={values.confirmpassword}
+                                        className="input-field"
+                                    />
+                                    <ErrorMessage
+                                        name="confirmpassword"
+                                        component="div"
+                                        className="err_message"
+                                    />
+                                </div>
+                                <div className="reg_input">
+                                    <label
+                                        htmlFor="role"
+                                        className="input_label"
+                                    >
+                                        Role
+                                    </label>
+                                    <Field
+                                        as="select"
+                                        type="role"
+                                        id="role"
+                                        name="role"
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        value={values.role}
+                                        className="input-field"
+                                    >
+                                        <option value="" hidden>
+                                            ...
+                                        </option>
+                                        <option value="0">Customer</option>
+                                        <option value="1">Freelancer</option>
+                                    </Field>
+                                    <ErrorMessage
+                                        name="role"
+                                        component="div"
+                                        className="err_message"
+                                    />
+                                </div>
+
+                                {values.role && +values.role == 0 ? (
+                                    <div className="reg_input">
+                                        <label
+                                            htmlFor="description"
+                                            className="input_label"
+                                        >
+                                            Description
+                                        </label>
+                                        <Field
+                                            as="textarea"
+                                            type="text"
+                                            id="description"
+                                            name="description"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.description}
+                                            className="input-field"
+                                        />
+                                        <ErrorMessage
+                                            name="description"
+                                            component="div"
+                                            className="err_message"
+                                        />
+                                    </div>
+                                ) : values.role && +values.role == 1 ? (
+                                    <div className="reg_input">
+                                        <label
+                                            htmlFor="salary"
+                                            className="input_label"
+                                        >
+                                            Salary
+                                        </label>
+                                        <Field
+                                            type="salary"
+                                            id="salary"
+                                            name="salary"
+                                            onChange={handleChange}
+                                            onBlur={handleBlur}
+                                            value={values.salary}
+                                            className="input-field"
+                                        />
+                                        <ErrorMessage
+                                            name="salary"
+                                            component="div"
+                                            className="err_message"
+                                        />
+                                    </div>
+                                ) : (
+                                    <></>
+                                )}
+
+                                <div className="log_button_div">
+                                    <button
+                                        type="submit"
+                                        className="log_button"
+                                    >
+                                        Sign Up
+                                    </button>
+                                </div>
+                            </form>
+                        )}
+                    </Formik>
+                </div>
             </div>
         </div>
     );

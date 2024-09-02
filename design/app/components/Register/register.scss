@@ -1,0 +1,94 @@
+.register_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+    img {
+        width: clamp(100px, 80%, 502px);
+    }
+    .reg_card {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: clamp(100px, 80%, 600px);
+        .input-field {
+            width: 100%;
+            padding: 5px;
+            display: flex;
+            background-color: rgb(235, 235, 235);
+            border-radius: 7px;
+            border: none;
+            outline: none;
+            position: relative;
+            z-index: 1;
+        }
+        .reg_input_names {
+            display: grid;
+            grid-auto-flow: column;
+        }
+        .input-field-names {
+            padding: 5px;
+            background-color: rgb(235, 235, 235);
+            border-radius: 7px;
+            border: none;
+            outline: none;
+            display: grid;
+        }
+    }
+    form {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+    }
+}
+
+.reg_input {
+    padding-bottom: 8px;
+    width: clamp(100px, 100%, 350px);
+}
+
+.input_label {
+    font-size: 10px;
+    color: rgb(131, 131, 131);
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+}
+
+.err_message {
+    padding: 8px 20px;
+    margin: 10px 0;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.log_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 15px;
+    background-color: rgb(9, 97, 212);
+    color: aliceblue;
+    margin: auto;
+    width: 140px;
+    height: 20px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 0.5s;
+    font-size: 13px;
+}
+
+.log_button_div button:hover {
+    background-color: #2980b9;
+}
