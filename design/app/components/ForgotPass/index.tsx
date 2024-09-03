@@ -20,7 +20,7 @@ export const ForgotPass = () => {
                         ForgotPass(values)
                             .unwrap()
                             .then((res) => {
-                                router.push("");
+                                router.push("/resetPass/"+values.username);
                             })
                             .catch(console.warn);
                     }}

@@ -1,4 +1,4 @@
-import { IIsVerify, ILogin, IRegister, IUser } from "@/type/type";
+import { IForgotPassword, IIsVerify, ILogin, IRegister, IUser } from "@/type/type";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const userApiSlice = createApi({
@@ -134,12 +134,11 @@ export const userApiSlice = createApi({
                 invalidatesTags: ["User"],
             }
         ),
-        forgotPassword: build.mutation<void, Pick<IUser, any> & Partial<IUser>>(
+        forgotPassword: build.mutation<void, Pick<IForgotPassword, any> & Partial<IForgotPassword>>(
             {
-                query: ({ email, ...patch }) => ({
-                    url: `user/forgetPassword/${email}`,
+                query: ({ username }) => ({
+                    url: `user/forgetPassword/${username}`,
                     method: "PATCH",
-                    body: patch,
                 }),
                 invalidatesTags: ["User"],
             }

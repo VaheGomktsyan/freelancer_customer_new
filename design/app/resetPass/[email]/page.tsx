@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import React from "react";
-import { ResetPass } from "../components/ResetPass";
+import { ResetPass } from "../../components/ResetPass";
 
-export default function ResetPassPage() {
+export default function ResetPassPage({params}:any) {
     return (
         <div>
-            <ResetPass />
+            <ResetPass email={params.email}/>
         </div>
     );
 }

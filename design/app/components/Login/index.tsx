@@ -53,7 +53,6 @@ export const Login = () => {
                         fill="#E8F6FF"
                     />
                 </svg>
-                    {/* <img src={"circle.svg"} alt="My Image" className="login_photo_circle" /> */}
                 <div className="login-card">
                     <h3>Login</h3>
                     <Formik
