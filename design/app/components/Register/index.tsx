@@ -18,6 +18,7 @@ export const Register = () => {
                 Login
             </Link>
             <div className="register_container">
+            <img src={"reg.svg"} alt="My Image" className="reg_photo" />
                 <div className="reg_card">
                     <h3>Sign Up</h3>
                     <Formik
