@@ -28,6 +28,7 @@
         .reg_input_names {
             display: grid;
             grid-auto-flow: column;
+            gap: 10px;
         }
         .input-field-names {
             padding: 5px;
@@ -36,6 +37,7 @@
             border: none;
             outline: none;
             display: grid;
+            width: 170px;
         }
     }
     form {
@@ -43,6 +45,11 @@
         display: grid;
         justify-items: center;
     }
+}
+.reg_card h3{
+    font-size: 25px;
+    color: rgb(37, 37, 37);
+    font-family: "Gill Sans Extrabold", sans-serif;
 }
 
 .reg_input {
@@ -91,4 +98,27 @@
 
 .log_button_div button:hover {
     background-color: #2980b9;
+}
+
+.login_href{
+    display: flex;
+    justify-content: end;
+    position: relative;
+    top: 30px;
+    right: 40px;
+    gap: 3px;
+    p {
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
+        color: rgba(131, 131, 131, 0.753);
+        font-size: 14px;
+      }
+    a{
+        text-decoration: none;
+        font-size: 16px;
+        color: #2980b9;
+        justify-content: center;
+        font-size: 14px;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    }
 }

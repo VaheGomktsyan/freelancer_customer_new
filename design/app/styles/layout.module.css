@@ -1,0 +1,5 @@
+.prof{
+    display: grid;
+    grid-template-columns: 100px auto;
+    padding: 10px;
+}

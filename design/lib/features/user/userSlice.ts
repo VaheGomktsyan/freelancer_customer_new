@@ -44,6 +44,9 @@ export const userApiSlice = createApi({
             query: () => ({
                 url: `auth/getProfile`,
                 method: "GET",
+                headers: {
+                    Authorization: `Bearer ${localStorage.token}`,
+                },
             }),
             providesTags: ["User"],
         }),

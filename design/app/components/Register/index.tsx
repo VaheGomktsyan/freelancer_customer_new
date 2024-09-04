@@ -14,9 +14,10 @@ export const Register = () => {
 
   return (
     <div>
-      <Link href="/" shallow passHref legacyBehavior>
-        Login
-      </Link>
+      <div className="login_href">
+        <p>Already a member?</p>
+        <a href="/">Sign in</a>
+      </div>
       <div className="register_container">
         <img src={"reg.svg"} alt="My Image" className="reg_photo" />
         <div className="reg_card">

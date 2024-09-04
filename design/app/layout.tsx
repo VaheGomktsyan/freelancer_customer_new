@@ -24,7 +24,6 @@ export default function RootLayout({ children }: Props) {
                 </head>
                 <body>
                     <section className={styles.container}>
-                        <Nav />
                         <main className={styles.main}>{children}</main>
                     </section>
                 </body>
