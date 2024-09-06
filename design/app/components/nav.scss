@@ -1,9 +1,10 @@
-.nav{
+.nav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  button {
+    background: none;
+    border: none;
     display: flex;
-    flex-direction: column;
-    button{
-        background: none;
-        border: none;
-        display: flex;
-    }
+  }
 }

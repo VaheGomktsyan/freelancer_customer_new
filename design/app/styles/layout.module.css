@@ -1,5 +1,19 @@
-.prof{
+.prof {
     display: grid;
     grid-template-columns: 100px auto;
     padding: 10px;
 }
+
+.profile {
+    position: absolute;
+    width: clamp(100px, 80%, 100%);
+    height: clamp(100px,80%, 100%);
+    padding: 15px;
+    left: 120px;
+    background: #f5f6f8;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.12);
+}
+.profile img{
+    width: 100px;
+}
+

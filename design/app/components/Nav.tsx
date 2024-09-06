@@ -51,20 +51,20 @@ export const Nav = () => {
                 shallow
                 passHref
                 legacyBehavior
-              >
+                >
                 AddWork
               </Link>
               <Link
                 className={`${styles.link} ${
                   pathname === "/profile/customer/freelancers"
-                    ? styles.active
-                    : ""
+                  ? styles.active
+                  : ""
                 }`}
                 href="/profile/customer/freelancers"
                 shallow
                 passHref
                 legacyBehavior
-              >
+                >
                 Freelancers
               </Link>
               <Link
@@ -75,11 +75,12 @@ export const Nav = () => {
                 shallow
                 passHref
                 legacyBehavior
-              >
+                >
                 MyWork
               </Link>
             </>
-          ) : data && data.role == 1 ? (
+            
+            ) : data && data.role == 1 ? (
             <>
               <>Freelancer</>
               <Link

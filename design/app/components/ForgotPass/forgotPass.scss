@@ -4,6 +4,7 @@
   justify-content: center;
   min-height: 100vh;
   align-items: center;
+  background-color: #CCE5FF;
   img {
     width: clamp(100px, 80%, 502px);
   }
@@ -13,7 +14,7 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: clamp(100px, 80%, 600px);
+    width: clamp(100px, 90%, 600px);
     .input-field {
       width: 100%;
       padding: 5px;
@@ -37,6 +38,7 @@
   font-size: 25px;
   color: rgb(37, 37, 37);
   font-family: "Gill Sans Extrabold", sans-serif;
+  padding-bottom: 10px;
 }
 
 .input_label {

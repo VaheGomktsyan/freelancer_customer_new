@@ -34,3 +34,7 @@ export const UpdateUserSchema = Yup.object({
     firstName: string().min(1).max(15).required(),
     age: number().min(18).max(120).required(),
 });
+
+export const forgotPassSchema=Yup.object({
+    username: string().email().required(),
+})

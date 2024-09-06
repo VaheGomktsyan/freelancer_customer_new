@@ -22,7 +22,7 @@ export const ResetPass = ({ email }: any) => {
             }}
             onSubmit={(values: IResetPassword) => {
               console.log(values);
-              ResetPass(values).unwrap();
+              ResetPass({...values, email}).unwrap();
             }}
           >
             {({

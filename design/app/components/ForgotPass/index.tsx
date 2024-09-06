@@ -1,8 +1,8 @@
 "use client";
 import { useForgotPasswordMutation } from "@/lib/features/user/userSlice";
+import { forgotPassSchema } from "@/schema";
 import { IForgotPassword } from "@/type/type";
 import { ErrorMessage, Field, Formik } from "formik";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import "./forgotPass.scss";
 
@@ -13,12 +13,14 @@ export const ForgotPass = () => {
   return (
     <div>
       <div className="forgotPass_container">
+      <img src={"reg.svg"} alt="My Image" className="login_photo" />
         <div className="forgotPass_card">
           <h3>Forgot Password</h3>
           <Formik
             initialValues={{
               username: "",
             }}
+            validationSchema={forgotPassSchema}
             onSubmit={(values: IForgotPassword) => {
               console.log(values);
               ForgotPass(values)
