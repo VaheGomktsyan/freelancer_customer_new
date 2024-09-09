@@ -47,7 +47,7 @@ export const Works = () => {
                                     <></>
                                 ) : (
                                     elm.workApplys.some(e=>e.freelancerId == results?.data?.id)?
-                                    <button disabled>sss</button>:
+                                    <button disabled>Sent</button>:
                                     <button type="submit" onClick={()=>sendApply(elm.id).unwrap().then(console.log)}>Send</button>
                                 )}
                             </td>
