@@ -3,6 +3,7 @@ import { useResetPasswordMutation } from "@/lib/features/user/userSlice";
 import { IResetPassword } from "@/type/type";
 import { ErrorMessage, Field, Formik } from "formik";
 import { useRouter } from "next/navigation";
+import "./resPass.scss"
 
 export const ResetPass = ({ email }: any) => {
   console.log(email);

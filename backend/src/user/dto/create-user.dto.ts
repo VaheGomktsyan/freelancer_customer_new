@@ -33,10 +33,10 @@ export class CreateUserDto {
   role: Role;
 
   @ApiProperty()
-  @JoiSchema(Joi.number().integer().min(1200).max(1000000))
+  // @JoiSchema(Joi.number().integer().min(1200).max(1000000).optional())
   salary: number;
 
   @ApiProperty()
-  @JoiSchema(Joi.string().min(2))
+  // @JoiSchema(Joi.string().min(2).optional())
   description: string;
 }

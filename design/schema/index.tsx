@@ -16,8 +16,8 @@ export const registerSchema = Yup.object({
         .oneOf([Yup.ref("password")], "Passwords must match")
         .required("Please confirm your password"),
     role: number().min(0).max(1).required(),
-    salary: number().min(1000).max(1000000),
-    description: string().min(3),
+    // salary: number().min(1000).max(1000000),
+    // description: string().min(3),
 });
 
 export const addWorkSchema = Yup.object({
