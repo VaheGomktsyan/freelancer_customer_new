@@ -77,6 +77,21 @@ export class ApplyController {
     }
   }
 
+  @HttpCode(HttpStatus.OK)
+  @HasRoles(Role.CUSTOMER)
+  @ApiResponse({ description: 'req freelancer id' })
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiBearerAuth('JWT-auth')
+  @Get('/byWork/:id')
+  async findByWork(@Param("id") id:number, @Req() req, @Res() res: Response) {
+    try {
+      const data = await this.applyService.findByWork(id, +req.user.id);
+      return res.status(HttpStatus.OK).json(data);
+    } catch (e) {
+      return res.status(HttpStatus.OK).json({ message: e.message });
+    }
+  }
+
   //
 
   @HttpCode(HttpStatus.OK)

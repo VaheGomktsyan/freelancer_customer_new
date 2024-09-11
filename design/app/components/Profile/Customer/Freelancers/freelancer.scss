@@ -1,0 +1,13 @@
+.free_container {
+  display: flex;
+  flex-wrap: wrap;
+  .free_card {
+    width: 100%;
+  }
+  h3 {
+    font-size: 25px;
+    color: rgb(37, 37, 37);
+    font-family: "Gill Sans Extrabold", sans-serif;
+    padding-bottom: 10px;
+  }
+}

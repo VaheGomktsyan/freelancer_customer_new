@@ -145,10 +145,40 @@ export class ApplyService {
     //       },
     //     },
     //   });
-      // return work || { message: 'work not found' };
-      return true
+    // return work || { message: 'work not found' };
+    return true;
     // } else {
-      // return { message: 'freelancer not found' };
+    // return { message: 'freelancer not found' };
     // }
+  }
+
+  async findByWork(workId: number, customerId: number) {
+    const work = await this.workRepository.findOne({
+      where: {
+        id: workId,
+      },
+      relations: {
+        customer: true,
+      },
+    });
+    if (work) {
+      if (work.customer.userId == customerId) {
+        const apply = await this.applyRepository.find({
+          where: {
+            workApply:work,
+          },
+          relations:{
+            freelancerApply:{
+              user:true
+            }
+          }
+        });
+        return apply
+      } else {
+        throw new BadRequestException('customer ...');
+      }
+    } else {
+      throw new NotFoundException('work not found');
+    }
   }
 }
