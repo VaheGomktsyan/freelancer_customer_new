@@ -49,7 +49,7 @@ export const feedbackApplySlice = createApi({
       }),
       providesTags: ["Apply"],
     }),
-    findByWork: build.query({
+    findByWork: build.mutation({
       query: (id: number) => ({
         url: `apply/byWork/${id}`,
         method: "GET",
@@ -57,7 +57,7 @@ export const feedbackApplySlice = createApi({
           Authorization: `Bearer ${localStorage.token}`,
         },
       }),
-      providesTags: ["Apply", "Work"],
+      invalidatesTags: ["Apply", "Work"],
     }),
     updateApply: build.mutation<void, Pick<IApply, any> & Partial<IApply>>({
       query: ({ workId, ...patch }) => ({
@@ -128,6 +128,6 @@ export const {
   useDeleteFeedbackMutation,
   useUpdateFeedbackMutation,
   useFindByFreelancerQuery,
-  useFindByWorkQuery,
+  useFindByWorkMutation,
   // useSendApplyMutation,
 } = feedbackApplySlice;

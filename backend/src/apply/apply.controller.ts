@@ -50,8 +50,8 @@ export class ApplyController {
   @HttpCode(HttpStatus.OK)
   @HasRoles(Role.FREELANCER)
   @ApiResponse({ description: 'req freelancer id' })
-  @UseGuards(JwtAuthGuard, RolesGuard)
-  @ApiBearerAuth('JWT-auth')
+  // @UseGuards(JwtAuthGuard, RolesGuard)
+  // @ApiBearerAuth('JWT-auth')
   @Get('/byFreelancer')
   async findByFreelancer(@Req() req, @Res() res: Response) {
     try {

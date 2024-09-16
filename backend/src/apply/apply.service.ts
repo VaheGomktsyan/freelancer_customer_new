@@ -168,8 +168,9 @@ export class ApplyService {
             workApply:work,
           },
           relations:{
+            workApply:true,
             freelancerApply:{
-              user:true
+              user:true,
             }
           }
         });

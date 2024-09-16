@@ -172,7 +172,7 @@ export const Nav = () => {
             onClick={() => {
               delete localStorage.token;
               router.replace("/");
-              location.reload();
+              // location.reload();
             }}
           >
             log Out

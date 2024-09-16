@@ -1,7 +1,7 @@
 "use client";
 import {
   useFindByFreelancerQuery,
-  useFindByWorkQuery,
+  useFindByWorkMutation,
 } from "@/lib/features/feedback-apply/feedbackApplySlice";
 import {
   useDeleteWorkMutation,
@@ -14,10 +14,10 @@ export const MyWorkCust = () => {
   const router = useRouter();
   const { data } = useGetWorkByCustomerQuery(0);
   const { data: freelancerId } = useFindByFreelancerQuery("");
-  const { data: workId } = useFindByWorkQuery(0);
-  console.log(data);
-
+  const [workFind, result] = useFindByWorkMutation();
   const [deleteWork] = useDeleteWorkMutation();
+  console.log(data);
+  console.log("result", result);
 
   const handleDelete = async (id: number) => {
     try {
@@ -26,6 +26,16 @@ export const MyWorkCust = () => {
       console.error("Failed to delete the work:", err);
     }
   };
+
+  const findWork = async (id: number) => {
+    try {
+      console.log("===>", id);
+      await workFind(id).unwrap().then(console.warn);
+    } catch (err) {
+      console.error("Failed:", err);
+    }
+  };
+
   return (
     <div>
       <h3>MyWork</h3>
@@ -53,6 +63,7 @@ export const MyWorkCust = () => {
                   className="btn btn-primary"
                   data-bs-toggle="modal"
                   data-bs-target="#myModal"
+                  onClick={() => findWork(elm.id)}
                 >
                   Open modal
                 </button>
@@ -66,7 +77,7 @@ export const MyWorkCust = () => {
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h4 className="modal-title">Modal Heading</h4>
+              <h4 className="modal-title">Freelancers</h4>
               <button
                 type="button"
                 className="btn-close"
@@ -75,13 +86,26 @@ export const MyWorkCust = () => {
             </div>
 
             <div className="modal-body">
-              <table>
-                <thead></thead>
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Accept</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  {data?.map((elm: IApply, index: number) => (
+                  {result.data?.map((elm: IApply, index: number) => (
                     <tr key={index}>
-                      <td>{elm.active}</td>
-                      <td>{elm.status}</td>
+                      <td>{elm.freelancerApply.user.firstName}</td>
+                      <td>{elm.freelancerApply.user.lastName}</td>
+                      <td>{elm.freelancerApply.user.age}</td>
+                      <td>{elm.freelancerApply.user.email}</td>
+                      <td>
+                        <button>Accept</button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
