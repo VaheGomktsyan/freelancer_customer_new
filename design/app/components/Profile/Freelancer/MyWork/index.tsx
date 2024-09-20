@@ -5,6 +5,7 @@ import { useGetWorkByFreelancerQuery } from "@/lib/features/work/workSlice";
 import { IApply, IWork } from "@/type/type";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import "./myWork.scss"
 
 export const MyWorkFree = () => {
     const router = useRouter();
@@ -25,7 +26,7 @@ export const MyWorkFree = () => {
     return (
         <div>
             <h3>MyWorkFree</h3>
-            <table>
+            <table className="table-myWork">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -44,6 +45,7 @@ export const MyWorkFree = () => {
                                 {elm.status == 0 ? (
                                     <button
                                         onClick={() => handleDelete(elm.workId)}
+                                        className="button-myWork"
                                     >
                                         x
                                     </button>

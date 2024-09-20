@@ -9,6 +9,7 @@ import {
 } from "@/lib/features/work/workSlice";
 import { IApply, IWork } from "@/type/type";
 import { useRouter } from "next/navigation";
+import "./myWork.scss";
 
 export const MyWorkCust = () => {
   const router = useRouter();
@@ -37,89 +38,97 @@ export const MyWorkCust = () => {
   };
 
   return (
-    <div>
-      <h3>MyWork</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((elm: IWork) => (
-            <tr key={elm.id}>
-              <td>{elm.name}</td>
-              <td>{elm.description}</td>
-              <td>{elm.price}</td>
-              <td>
-                <button onClick={() => handleDelete(elm.id)}>Delete</button>
-              </td>
-              <td>
+    <div className="work_container">
+      <div className="work_card">
+        <h3>MyWork</h3>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Delete</th>
+              <th>Applications</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data?.map((elm: IWork) => (
+              <tr key={elm.id}>
+                <td>{elm.name}</td>
+                <td>{elm.description}</td>
+                <td>{elm.price}</td>
+                <td>
+                  <button
+                    onClick={() => handleDelete(elm.id)}
+                    className="btn btn-primary"
+                  >
+                    Delete
+                  </button>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#myModal"
+                    onClick={() => findWork(elm.id)}
+                  >
+                    Open modal
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        <div className="modal" id="myModal">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Freelancers</h4>
                 <button
                   type="button"
-                  className="btn btn-primary"
-                  data-bs-toggle="modal"
-                  data-bs-target="#myModal"
-                  onClick={() => findWork(elm.id)}
-                >
-                  Open modal
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
 
-      <div className="modal" id="myModal">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h4 className="modal-title">Freelancers</h4>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-              ></button>
-            </div>
-
-            <div className="modal-body">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th>FirstName</th>
-                    <th>LastName</th>
-                    <th>Age</th>
-                    <th>Email</th>
-                    <th>Accept</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {result.data?.map((elm: IApply, index: number) => (
-                    <tr key={index}>
-                      <td>{elm.freelancerApply.user.firstName}</td>
-                      <td>{elm.freelancerApply.user.lastName}</td>
-                      <td>{elm.freelancerApply.user.age}</td>
-                      <td>{elm.freelancerApply.user.email}</td>
-                      <td>
-                        <button>Accept</button>
-                      </td>
+              <div className="modal-body">
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>FirstName</th>
+                      <th>LastName</th>
+                      <th>Age</th>
+                      <th>Email</th>
+                      <th>Accept</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {result.data?.map((elm: IApply, index: number) => (
+                      <tr key={index}>
+                        <td>{elm.freelancerApply.user.firstName}</td>
+                        <td>{elm.freelancerApply.user.lastName}</td>
+                        <td>{elm.freelancerApply.user.age}</td>
+                        <td>{elm.freelancerApply.user.email}</td>
+                        <td>
+                          <button className="btn btn-primary">Accept</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-danger"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>

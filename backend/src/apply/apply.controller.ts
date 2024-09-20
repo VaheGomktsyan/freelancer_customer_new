@@ -94,6 +94,8 @@ export class ApplyController {
 
   //
 
+  
+
   @HttpCode(HttpStatus.OK)
   @HasRoles(Role.FREELANCER)
   @ApiResponse({ description: 'req freelancer id' })

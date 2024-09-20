@@ -1,0 +1,96 @@
+$table-bg: #ffffff;
+$table-border-color: #e0e0e0;
+$table-header-bg: #a6adb4;
+$table-header-color: #ffffff;
+$table-row-hover-bg: #f1f1f1;
+$table-border-radius: 8px;
+$table-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+$button-bg: #6c757d;
+$button-bg-hover: #5a6268;
+$button-bg-active: #4e555b;
+$button-text-color: #ffffff;
+$button-border-radius: 5px;
+$button-padding: 10px 20px;
+$button-font-size: 16px;
+$button-transition: background-color 0.3s ease;
+$button-disabled-bg: #b0b3b6;
+$button-disabled-text: #6c757d;
+
+.table-works {
+  width: 100%;
+  thead {
+    background-color: $table-header-bg;
+    color: $table-header-color;
+    th {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 2px solid $table-border-color;
+      &:first-child {
+        border-top-left-radius: $table-border-radius;
+      }
+
+      &:last-child {
+        border-top-right-radius: $table-border-radius;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background-color: lighten($table-header-bg, 10%);
+      }
+      &:hover {
+        background-color: $table-row-hover-bg;
+      }
+
+      td {
+        padding: 10px 15px;
+        border-bottom: 1px solid $table-border-color;
+
+        &:first-child {
+          border-left: 2px solid $table-border-color;
+        }
+
+        &:last-child {
+          border-right: 2px solid $table-border-color;
+        }
+      }
+    }
+  }
+}
+
+.button-works {
+  background-color: $button-bg;
+  color: $button-text-color;
+  border: none;
+  border-radius: $button-border-radius;
+  padding: $button-padding;
+  font-size: $button-font-size;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition: $button-transition;
+
+  &:hover {
+    background-color: $button-bg-hover;
+  }
+
+  &:active {
+    background-color: $button-bg-active;
+    transform: scale(0.95);
+  }
+}
+
+.button-disabled {
+  background-color: $button-disabled-bg;
+  color: $button-disabled-text;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.65;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}

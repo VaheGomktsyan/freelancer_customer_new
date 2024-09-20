@@ -23,7 +23,6 @@ export class ApplyService {
   ) {}
   async create(freelancerId: number, createApplyDto: CreateApplyDto) {
     console.log(freelancerId, createApplyDto);
-
     const { workId } = createApplyDto;
     const freelancer = await this.freelancerRepository.findOne({
       where: { userId: freelancerId },
@@ -40,7 +39,6 @@ export class ApplyService {
       return { message: 'Error: Not found' };
     }
   }
-
   async findOneByFreelancerId(userId: number) {
     const freelancer = await this.freelancerRepository.findOne({
       where: {
@@ -133,24 +131,13 @@ export class ApplyService {
         await this.applyRepository.delete({ workId, freelancerId });
       }
     }
-
-    // if (freelancer) {
-    //   const work = await this.applyRepository.find({
-    //     where: {
-    //       freelancerId: freelancerId,
-    //     },
-    //     relations: {
-    //       workApply: {
-    //         workFeedbacks: true,
-    //       },
-    //     },
-    //   });
-    // return work || { message: 'work not found' };
     return true;
-    // } else {
-    // return { message: 'freelancer not found' };
-    // }
   }
+
+async acceptApp(workId:number,freelancerId:number){
+
+  
+}
 
   async findByWork(workId: number, customerId: number) {
     const work = await this.workRepository.findOne({
@@ -165,16 +152,16 @@ export class ApplyService {
       if (work.customer.userId == customerId) {
         const apply = await this.applyRepository.find({
           where: {
-            workApply:work,
+            workApply: work,
           },
-          relations:{
-            workApply:true,
-            freelancerApply:{
-              user:true,
-            }
-          }
+          relations: {
+            workApply: true,
+            freelancerApply: {
+              user: true,
+            },
+          },
         });
-        return apply
+        return apply;
       } else {
         throw new BadRequestException('customer ...');
       }
