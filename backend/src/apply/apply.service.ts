@@ -122,7 +122,7 @@ export class ApplyService {
         status: 0,
       },
     });
-    if (apply) {
+    if (apply && freelancer) {
       const work = await this.workRepository.findOne({
         where: { id: workId },
         relations: { customer: true },
@@ -134,10 +134,30 @@ export class ApplyService {
     return true;
   }
 
-async acceptApp(workId:number,freelancerId:number){
-
-  
-}
+  async acceptApp(workId: number, freelancerId: number, userId: number) {
+    const freelancer = await this.freelancerRepository.findOne({
+      where: {
+        userId: freelancerId,
+      },
+    });
+    const apply = await this.applyRepository.findOne({
+      where: {
+        workId,
+        freelancerId,
+        status: 0,
+      },
+    });
+    if (apply && freelancer) {
+      const work = await this.workRepository.findOne({
+        where: { id: workId },
+        relations: { customer: true },
+      });
+      if (work.customer.userId == userId || userId == freelancerId) {
+        await this.applyRepository.update({status:1}, { freelancerId, workId });
+      }
+    }
+    return true;
+  }
 
   async findByWork(workId: number, customerId: number) {
     const work = await this.workRepository.findOne({
